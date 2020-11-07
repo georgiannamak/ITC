@@ -7,16 +7,21 @@
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
+    <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66cecb81-9373-44ed-9faa-81e9cf6e4b91" name="Default Changelist" comment="File I/O" />
+    <list default="true" id="d1bef2de-635d-4295-8ea1-fe6337792b15" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/com_sun_xml_bind_jaxb_core_2_3_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_xml_bind_jaxb_api_2_3_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ITC.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Process/AvailabiltyOfRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Process/AvailabiltyOfRoom.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,14 +37,10 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="1-AvailabilityOfRoom" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
-  </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="dff98294-80b4-4a5b-8002-5e4b6940e75c" />
   </component>
   <component name="GithubPullRequestsUISettings">
     <option name="hiddenUrls">
@@ -48,8 +49,7 @@
       </set>
     </option>
   </component>
-  <component name="ProjectId" id="1jQuvvaAU8AzMyGkm1NpHHMwB1m" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1jTYZIUz96gYuXw5Anlxv3FxY3n" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -61,23 +61,19 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="TODO_SCOPE" value="All Places" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="" />
-    </key>
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="Registry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Registry" />
+      <option name="MAIN_CLASS_NAME" value="Process.Registry" />
       <module name="ITC" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -87,139 +83,225 @@
       <list>
         <item itemvalue="Application.Registry" />
         <item itemvalue="Application.Registry" />
-        <item itemvalue="Application.Registry" />
-        <item itemvalue="Application.Registry" />
-        <item itemvalue="Application.Registry" />
       </list>
     </recent_temporary>
   </component>
   <component name="SvnConfiguration">
-    <configuration>C:\Users\georg\AppData\Roaming\Subversion</configuration>
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="66cecb81-9373-44ed-9faa-81e9cf6e4b91" name="Default Changelist" comment="" />
-      <created>1603748870563</created>
+      <changelist id="d1bef2de-635d-4295-8ea1-fe6337792b15" name="Default Changelist" comment="" />
+      <created>1603829602443</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1603748870563</updated>
-      <workItem from="1603748873874" duration="190000" />
-      <workItem from="1603824489031" duration="4441000" />
+      <updated>1603829602443</updated>
+      <workItem from="1603829605923" duration="115528000" />
+      <workItem from="1604696776935" duration="6567000" />
     </task>
-    <task id="LOCAL-00001" summary="File I/O">
-      <created>1603827207568</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1603827207568</updated>
-    </task>
-    <task id="LOCAL-00002" summary="File I/O">
-      <created>1603828113779</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1603828113779</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
-  </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
-      <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="CUSTOM_BOOLEAN_PROPERTIES">
-                <map>
-                  <entry key="Show.Git.Branches" value="true" />
-                </map>
-              </option>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="File I/O" />
-    <option name="LAST_COMMIT_MESSAGE" value="File I/O" />
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="249" y="0" key="#Project_Structure" timestamp="1603749004208">
+    <state x="249" y="0" key="#Project_Structure" timestamp="1603830420428">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1603749004208" />
-    <state x="535" y="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1603825787234">
+    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1603830420428" />
+    <state x="574" y="88" key="#com.intellij.ide.util.MemberChooser" timestamp="1604665189770">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="535" y="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1603825787234" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1603828756110">
+    <state x="574" y="88" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1604665189770" />
+    <state x="549" y="153" key="FileChooserDialogImpl" timestamp="1604776048118">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603828756110" />
-    <state width="746" height="204" key="GridCell.Tab.0.bottom" timestamp="1603828693577">
+    <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1604776048118" />
+    <state width="1493" height="277" key="GridCell.Tab.0.bottom" timestamp="1604775821422">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="204" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603828693577" />
-    <state width="746" height="204" key="GridCell.Tab.0.center" timestamp="1603828693576">
+    <state width="1493" height="277" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604775821422" />
+    <state width="1493" height="277" key="GridCell.Tab.0.center" timestamp="1604775821422">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="204" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603828693576" />
-    <state width="746" height="204" key="GridCell.Tab.0.left" timestamp="1603828693576">
+    <state width="1493" height="277" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1604775821422" />
+    <state width="1493" height="277" key="GridCell.Tab.0.left" timestamp="1604775821422">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="204" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603828693576" />
-    <state width="746" height="204" key="GridCell.Tab.0.right" timestamp="1603828693576">
+    <state width="1493" height="277" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1604775821422" />
+    <state width="1493" height="277" key="GridCell.Tab.0.right" timestamp="1604775821422">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="746" height="204" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603828693576" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1603828269168">
+    <state width="1493" height="277" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1604775821422" />
+    <state width="1493" height="252" key="GridCell.Tab.1.bottom" timestamp="1604774554227">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1603828269168" />
-    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1603828328586">
+    <state width="1493" height="252" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604774554227" />
+    <state width="1493" height="252" key="GridCell.Tab.1.center" timestamp="1604774554227">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1603828328586" />
-    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1603827838069">
+    <state width="1493" height="252" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1604774554227" />
+    <state width="1493" height="252" key="GridCell.Tab.1.left" timestamp="1604774554227">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1603827838069" />
-    <state x="498" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1603824827197">
+    <state width="1493" height="252" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1604774554227" />
+    <state width="1493" height="252" key="GridCell.Tab.1.right" timestamp="1604774554227">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="498" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1603824827197" />
-    <state x="577" y="322" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603828962154">
+    <state width="1493" height="252" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1604774554227" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1604775958199">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="577" y="322" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1603828962154" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1603828561803">
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1604775958199" />
+    <state x="498" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1604147620421">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1603828561803" />
+    <state x="498" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1604147620421" />
+    <state x="577" y="322" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604253659392">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="577" y="322" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1604253659391" />
+    <state x="479" y="129" width="577" height="656" key="find.popup" timestamp="1604774465584">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="479" y="129" width="577" height="656" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1604774465584" />
+    <state x="569" y="308" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1604776040021">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="569" y="308" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.824@0.0.1536.824" timestamp="1604776040021" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1604664041440">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1604664041440" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1604662320666">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1604662320666" />
+    <state x="491" y="317" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1603831013214">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="491" y="317" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1536.824@0.0.1536.824" timestamp="1603831013214" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>220</line>
+          <option name="timeStamp" value="194" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>222</line>
+          <option name="timeStamp" value="195" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>179</line>
+          <option name="timeStamp" value="197" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>139</line>
+          <option name="timeStamp" value="210" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>140</line>
+          <option name="timeStamp" value="211" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>141</line>
+          <option name="timeStamp" value="212" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>142</line>
+          <option name="timeStamp" value="213" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>143</line>
+          <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>144</line>
+          <option name="timeStamp" value="215" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>165</line>
+          <option name="timeStamp" value="217" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>166</line>
+          <option name="timeStamp" value="218" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>167</line>
+          <option name="timeStamp" value="219" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>168</line>
+          <option name="timeStamp" value="220" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>169</line>
+          <option name="timeStamp" value="221" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>171</line>
+          <option name="timeStamp" value="222" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>172</line>
+          <option name="timeStamp" value="223" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>181</line>
+          <option name="timeStamp" value="224" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo typeName="Problem.Room" fieldName="unavailability" />
+        <PinnedItemInfo typeName="Problem.Room" fieldName="availabilty" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="rooms" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ITC$Registry.ic" NAME="Registry Coverage Results" MODIFIED="1604156579685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
