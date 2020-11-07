@@ -1,0 +1,906 @@
+Index: ITC.iml
+===================================================================
+--- ITC.iml	(revision 99cb0965488a125d24ffda81c4ef11889b74bd08)
++++ ITC.iml	(revision 99cb0965488a125d24ffda81c4ef11889b74bd08)
+@@ -1,26 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module version="4">
+-  <component name="ExternalSystem" externalSystem="Maven" />
+-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+-    <output url="file://$MODULE_DIR$/target/classes" />
+-    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+-    <content url="file://$MODULE_DIR$">
+-      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+-      <excludeFolder url="file://$MODULE_DIR$/target" />
+-    </content>
+-    <orderEntry type="inheritedJdk" />
+-    <orderEntry type="sourceFolder" forTests="false" />
+-    <orderEntry type="library" name="com.sun.xml.bind:jaxb-core:2.3.0.1" level="project" />
+-    <orderEntry type="library" name="javax.xml.bind:jaxb-api:2.3.1" level="project" />
+-    <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.3.0-b170201.1204" level="project" />
+-    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+-    <orderEntry type="library" name="Maven: org.glassfish.jaxb:jaxb-runtime:2.3.0-b170127.1453" level="project" />
+-    <orderEntry type="library" name="Maven: org.glassfish.jaxb:jaxb-core:2.3.0-b170127.1453" level="project" />
+-    <orderEntry type="library" name="Maven: org.glassfish.jaxb:txw2:2.3.0-b170127.1453" level="project" />
+-    <orderEntry type="library" name="Maven: com.sun.istack:istack-commons-runtime:3.0.4" level="project" />
+-    <orderEntry type="library" name="Maven: org.jvnet.staxex:stax-ex:1.7.8" level="project" />
+-    <orderEntry type="library" name="Maven: com.sun.xml.fastinfoset:FastInfoset:1.2.13" level="project" />
+-  </component>
+-</module>
+\ No newline at end of file
+Index: .idea/modules.xml
+===================================================================
+--- .idea/modules.xml	(revision 99cb0965488a125d24ffda81c4ef11889b74bd08)
++++ .idea/modules.xml	(revision 99cb0965488a125d24ffda81c4ef11889b74bd08)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/ITC.iml" filepath="$PROJECT_DIR$/ITC.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"$PROJECT_DIR$\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision 99cb0965488a125d24ffda81c4ef11889b74bd08)
++++ .idea/vcs.xml	(date 1603829612438)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++    <mapping directory="" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/libraries/javax_xml_bind_jaxb_api_2_3_1.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/libraries/javax_xml_bind_jaxb_api_2_3_1.xml	(date 1603830044918)
++++ .idea/libraries/javax_xml_bind_jaxb_api_2_3_1.xml	(date 1603830044918)
+@@ -0,0 +1,10 @@
++<component name="libraryTable">
++  <library name="javax.xml.bind:jaxb-api:2.3.1" type="repository">
++    <properties maven-id="javax.xml.bind:jaxb-api:2.3.1" />
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar!/" />
++    </CLASSES>
++    <JAVADOC />
++    <SOURCES />
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision 99cb0965488a125d24ffda81c4ef11889b74bd08)
++++ .idea/misc.xml	(date 1604778642469)
+@@ -1,6 +1,17 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager">
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="JavaScriptSettings">
++    <option name="languageLevel" value="ES6" />
++  </component>
++  <component name="MavenProjectsManager">
++    <option name="originalFiles">
++      <list>
++        <option value="$PROJECT_DIR$/pom.xml" />
++      </list>
++    </option>
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_14" project-jdk-name="14" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"BRANCH:master\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </select>\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"66cecb81-9373-44ed-9faa-81e9cf6e4b91\" name=\"Default Changelist\" comment=\"File I/O\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"1-AvailabilityOfRoom\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"GithubDefaultAccount\">\r\n    <option name=\"defaultAccountId\" value=\"dff98294-80b4-4a5b-8002-5e4b6940e75c\" />\r\n  </component>\r\n  <component name=\"GithubPullRequestsUISettings\">\r\n    <option name=\"hiddenUrls\">\r\n      <set>\r\n        <option value=\"https://github.com/georgiannamak/ITC.git\" />\r\n      </set>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1jQuvvaAU8AzMyGkm1NpHHMwB1m\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"Downloaded.Files.Path.Enabled\" value=\"false\" />\r\n    <property name=\"Repository.Attach.Annotations\" value=\"false\" />\r\n    <property name=\"Repository.Attach.JavaDocs\" value=\"false\" />\r\n    <property name=\"Repository.Attach.Sources\" value=\"false\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"TODO_SCOPE\" value=\"All Places\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Libraries\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.15\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.2\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"project.propVCSSupport.Mappings\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Registry\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Registry\" />\r\n      <module name=\"ITC\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Registry\" />\r\n        <item itemvalue=\"Application.Registry\" />\r\n        <item itemvalue=\"Application.Registry\" />\r\n        <item itemvalue=\"Application.Registry\" />\r\n        <item itemvalue=\"Application.Registry\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration>C:\\Users\\georg\\AppData\\Roaming\\Subversion</configuration>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"66cecb81-9373-44ed-9faa-81e9cf6e4b91\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1603748870563</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1603748870563</updated>\r\n      <workItem from=\"1603748873874\" duration=\"190000\" />\r\n      <workItem from=\"1603824489031\" duration=\"4441000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"File I/O\">\r\n      <created>1603827207568</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1603827207568</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"File I/O\">\r\n      <created>1603828113779</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1603828113779</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ORDER\">\r\n      <list>\r\n        <option value=\"0\" />\r\n        <option value=\"2\" />\r\n        <option value=\"3\" />\r\n        <option value=\"1\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"CUSTOM_BOOLEAN_PROPERTIES\">\r\n                <map>\r\n                  <entry key=\"Show.Git.Branches\" value=\"true\" />\r\n                </map>\r\n              </option>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"master\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"File I/O\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"File I/O\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"249\" y=\"0\" key=\"#Project_Structure\" timestamp=\"1603749004208\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"249\" y=\"0\" key=\"#Project_Structure/0.0.1536.824@0.0.1536.824\" timestamp=\"1603749004208\" />\r\n    <state x=\"535\" y=\"267\" key=\"#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes\" timestamp=\"1603825787234\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"535\" y=\"267\" key=\"#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824\" timestamp=\"1603825787234\" />\r\n    <state x=\"549\" y=\"167\" key=\"FileChooserDialogImpl\" timestamp=\"1603828756110\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"549\" y=\"167\" key=\"FileChooserDialogImpl/0.0.1536.824@0.0.1536.824\" timestamp=\"1603828756110\" />\r\n    <state width=\"746\" height=\"204\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1603828693577\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"746\" height=\"204\" key=\"GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824\" timestamp=\"1603828693577\" />\r\n    <state width=\"746\" height=\"204\" key=\"GridCell.Tab.0.center\" timestamp=\"1603828693576\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"746\" height=\"204\" key=\"GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824\" timestamp=\"1603828693576\" />\r\n    <state width=\"746\" height=\"204\" key=\"GridCell.Tab.0.left\" timestamp=\"1603828693576\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"746\" height=\"204\" key=\"GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824\" timestamp=\"1603828693576\" />\r\n    <state width=\"746\" height=\"204\" key=\"GridCell.Tab.0.right\" timestamp=\"1603828693576\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"746\" height=\"204\" key=\"GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824\" timestamp=\"1603828693576\" />\r\n    <state x=\"249\" y=\"0\" key=\"SettingsEditor\" timestamp=\"1603828269168\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"249\" y=\"0\" key=\"SettingsEditor/0.0.1536.824@0.0.1536.824\" timestamp=\"1603828269168\" />\r\n    <state x=\"361\" y=\"141\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1603828328586\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"361\" y=\"141\" key=\"Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824\" timestamp=\"1603828328586\" />\r\n    <state x=\"93\" y=\"93\" width=\"1350\" height=\"638\" key=\"com.intellij.history.integration.ui.views.FileHistoryDialog\" timestamp=\"1603827838069\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"93\" y=\"93\" width=\"1350\" height=\"638\" key=\"com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1603827838069\" />\r\n    <state x=\"498\" y=\"300\" key=\"com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD\" timestamp=\"1603824827197\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"498\" y=\"300\" key=\"com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824\" timestamp=\"1603824827197\" />\r\n    <state x=\"577\" y=\"322\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1603828962154\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"577\" y=\"322\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824\" timestamp=\"1603828962154\" />\r\n    <state x=\"425\" y=\"187\" key=\"run.anything.popup\" timestamp=\"1603828561803\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"425\" y=\"187\" key=\"run.anything.popup/0.0.1536.824@0.0.1536.824\" timestamp=\"1603828561803\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 99cb0965488a125d24ffda81c4ef11889b74bd08)
++++ .idea/workspace.xml	(date 1604780355082)
+@@ -6,17 +6,38 @@
+         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+       </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
+     </expand>
+     <select>
+       <path>
+         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+       </path>
+     </select>
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="66cecb81-9373-44ed-9faa-81e9cf6e4b91" name="Default Changelist" comment="File I/O" />
++    <list default="true" id="d1bef2de-635d-4295-8ea1-fe6337792b15" name="Default Changelist" comment="">
++      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/libraries/com_sun_xml_bind_jaxb_core_2_3_0_1.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_xml_bind_jaxb_api_2_3_1.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/ITC.iml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Process/AvailabiltyOfRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Process/AvailabiltyOfRoom.java" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -32,14 +53,10 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="1-AvailabilityOfRoom" />
++        <entry key="$PROJECT_DIR$" value="Phase-2" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-    <option name="UPDATE_TYPE" value="REBASE" />
+-  </component>
+-  <component name="GithubDefaultAccount">
+-    <option name="defaultAccountId" value="dff98294-80b4-4a5b-8002-5e4b6940e75c" />
+   </component>
+   <component name="GithubPullRequestsUISettings">
+     <option name="hiddenUrls">
+@@ -48,8 +65,7 @@
+       </set>
+     </option>
+   </component>
+-  <component name="ProjectId" id="1jQuvvaAU8AzMyGkm1NpHHMwB1m" />
+-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
++  <component name="ProjectId" id="1jTYZIUz96gYuXw5Anlxv3FxY3n" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+@@ -61,23 +77,19 @@
+     <property name="Repository.Attach.Sources" value="false" />
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+-    <property name="TODO_SCOPE" value="All Places" />
++    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+     <property name="aspect.path.notification.shown" value="true" />
+     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
++    <property name="nodejs_package_manager_path" value="npm" />
+     <property name="project.structure.last.edited" value="Libraries" />
+     <property name="project.structure.proportion" value="0.15" />
+     <property name="project.structure.side.proportion" value="0.2" />
+-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+-  </component>
+-  <component name="RecentsManager">
+-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+-      <recent name="" />
+-    </key>
++    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+   </component>
+   <component name="RunManager">
+     <configuration name="Registry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="Registry" />
++      <option name="MAIN_CLASS_NAME" value="Process.Registry" />
+       <module name="ITC" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+@@ -87,72 +99,40 @@
+       <list>
+         <item itemvalue="Application.Registry" />
+         <item itemvalue="Application.Registry" />
+-        <item itemvalue="Application.Registry" />
+-        <item itemvalue="Application.Registry" />
+-        <item itemvalue="Application.Registry" />
+       </list>
+     </recent_temporary>
+   </component>
+   <component name="SvnConfiguration">
+-    <configuration>C:\Users\georg\AppData\Roaming\Subversion</configuration>
++    <configuration />
+   </component>
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+-      <changelist id="66cecb81-9373-44ed-9faa-81e9cf6e4b91" name="Default Changelist" comment="" />
+-      <created>1603748870563</created>
++      <changelist id="d1bef2de-635d-4295-8ea1-fe6337792b15" name="Default Changelist" comment="" />
++      <created>1603829602443</created>
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+-      <updated>1603748870563</updated>
+-      <workItem from="1603748873874" duration="190000" />
+-      <workItem from="1603824489031" duration="4441000" />
++      <updated>1603829602443</updated>
++      <workItem from="1603829605923" duration="115528000" />
++      <workItem from="1604696776935" duration="6254000" />
++      <workItem from="1604779935056" duration="318000" />
+     </task>
+-    <task id="LOCAL-00001" summary="File I/O">
+-      <created>1603827207568</created>
+-      <option name="number" value="00001" />
+-      <option name="presentableId" value="LOCAL-00001" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1603827207568</updated>
+-    </task>
+-    <task id="LOCAL-00002" summary="File I/O">
+-      <created>1603828113779</created>
+-      <option name="number" value="00002" />
+-      <option name="presentableId" value="LOCAL-00002" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1603828113779</updated>
+-    </task>
+-    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="2" />
+   </component>
+-  <component name="Vcs.Log.History.Properties">
+-    <option name="COLUMN_ORDER">
+-      <list>
+-        <option value="0" />
+-        <option value="2" />
+-        <option value="3" />
+-        <option value="1" />
+-      </list>
+-    </option>
+-  </component>
+   <component name="Vcs.Log.Tabs.Properties">
+     <option name="TAB_STATES">
+       <map>
+         <entry key="MAIN">
+           <value>
+             <State>
+-              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+-                <map>
+-                  <entry key="Show.Git.Branches" value="true" />
+-                </map>
+-              </option>
+               <option name="FILTERS">
+                 <map>
+                   <entry key="branch">
+                     <value>
+                       <list>
+-                        <option value="master" />
++                        <option value="origin/master" />
+                       </list>
+                     </value>
+                   </entry>
+@@ -163,63 +143,190 @@
+         </entry>
+       </map>
+     </option>
+-  </component>
+-  <component name="VcsManagerConfiguration">
+-    <MESSAGE value="File I/O" />
+-    <option name="LAST_COMMIT_MESSAGE" value="File I/O" />
++    <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+   <component name="WindowStateProjectService">
+-    <state x="249" y="0" key="#Project_Structure" timestamp="1603749004208">
++    <state x="249" y="0" key="#Project_Structure" timestamp="1603830420428">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1603749004208" />
+-    <state x="535" y="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1603825787234">
++    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1603830420428" />
++    <state x="574" y="88" key="#com.intellij.ide.util.MemberChooser" timestamp="1604665189770">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="535" y="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1603825787234" />
+-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1603828756110">
++    <state x="574" y="88" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1604665189770" />
++    <state width="1493" height="186" key="GridCell.Tab.0.bottom" timestamp="1604775120914">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603828756110" />
+-    <state width="746" height="204" key="GridCell.Tab.0.bottom" timestamp="1603828693577">
++    <state width="1493" height="186" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604775120914" />
++    <state width="1493" height="186" key="GridCell.Tab.0.center" timestamp="1604775120914">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="746" height="204" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603828693577" />
+-    <state width="746" height="204" key="GridCell.Tab.0.center" timestamp="1603828693576">
++    <state width="1493" height="186" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1604775120914" />
++    <state width="1493" height="186" key="GridCell.Tab.0.left" timestamp="1604775120914">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="746" height="204" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603828693576" />
+-    <state width="746" height="204" key="GridCell.Tab.0.left" timestamp="1603828693576">
++    <state width="1493" height="186" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1604775120914" />
++    <state width="1493" height="186" key="GridCell.Tab.0.right" timestamp="1604775120914">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="746" height="204" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603828693576" />
+-    <state width="746" height="204" key="GridCell.Tab.0.right" timestamp="1603828693576">
++    <state width="1493" height="186" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1604775120914" />
++    <state width="1493" height="252" key="GridCell.Tab.1.bottom" timestamp="1604774554227">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state width="746" height="204" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603828693576" />
+-    <state x="249" y="0" key="SettingsEditor" timestamp="1603828269168">
++    <state width="1493" height="252" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604774554227" />
++    <state width="1493" height="252" key="GridCell.Tab.1.center" timestamp="1604774554227">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1603828269168" />
+-    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1603828328586">
++    <state width="1493" height="252" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1604774554227" />
++    <state width="1493" height="252" key="GridCell.Tab.1.left" timestamp="1604774554227">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1603828328586" />
+-    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1603827838069">
++    <state width="1493" height="252" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1604774554227" />
++    <state width="1493" height="252" key="GridCell.Tab.1.right" timestamp="1604774554227">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1603827838069" />
+-    <state x="498" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1603824827197">
++    <state width="1493" height="252" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1604774554227" />
++    <state x="249" y="0" key="SettingsEditor" timestamp="1604775757283">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="498" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1603824827197" />
+-    <state x="577" y="322" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603828962154">
++    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1604775757283" />
++    <state x="498" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1604147620421">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="577" y="322" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1603828962154" />
+-    <state x="425" y="187" key="run.anything.popup" timestamp="1603828561803">
++    <state x="498" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1604147620421" />
++    <state x="577" y="322" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604780081948">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1603828561803" />
++    <state x="577" y="322" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1604780081948" />
++    <state x="479" y="129" width="577" height="656" key="find.popup" timestamp="1604774465584">
++      <screen x="0" y="0" width="1536" height="824" />
++    </state>
++    <state x="479" y="129" width="577" height="656" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1604774465584" />
++    <state x="569" y="308" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1604779995724">
++      <screen x="0" y="0" width="1536" height="824" />
++    </state>
++    <state x="569" y="308" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.824@0.0.1536.824" timestamp="1604779995724" />
++    <state x="425" y="187" key="run.anything.popup" timestamp="1604664041440">
++      <screen x="0" y="0" width="1536" height="824" />
++    </state>
++    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1604664041440" />
++    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1604662320666">
++      <screen x="0" y="0" width="1536" height="824" />
++    </state>
++    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1604662320666" />
++    <state x="491" y="317" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1603831013214">
++      <screen x="0" y="0" width="1536" height="824" />
++    </state>
++    <state x="491" y="317" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1536.824@0.0.1536.824" timestamp="1603831013214" />
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>114</line>
++          <option name="timeStamp" value="111" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>220</line>
++          <option name="timeStamp" value="194" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>222</line>
++          <option name="timeStamp" value="195" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>179</line>
++          <option name="timeStamp" value="197" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>139</line>
++          <option name="timeStamp" value="210" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>140</line>
++          <option name="timeStamp" value="211" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>141</line>
++          <option name="timeStamp" value="212" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>142</line>
++          <option name="timeStamp" value="213" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>143</line>
++          <option name="timeStamp" value="214" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>144</line>
++          <option name="timeStamp" value="215" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>165</line>
++          <option name="timeStamp" value="217" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>166</line>
++          <option name="timeStamp" value="218" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>167</line>
++          <option name="timeStamp" value="219" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>168</line>
++          <option name="timeStamp" value="220" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>169</line>
++          <option name="timeStamp" value="221" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>171</line>
++          <option name="timeStamp" value="222" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>172</line>
++          <option name="timeStamp" value="223" />
++        </line-breakpoint>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
++          <line>181</line>
++          <option name="timeStamp" value="224" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
++    <pin-to-top-manager>
++      <pinned-members>
++        <PinnedItemInfo typeName="Problem.Room" fieldName="unavailability" />
++        <PinnedItemInfo typeName="Problem.Room" fieldName="availabilty" />
++      </pinned-members>
++    </pin-to-top-manager>
++    <watches-manager>
++      <configuration name="Application">
++        <watch expression="rooms" language="JAVA" />
++      </configuration>
++    </watches-manager>
++  </component>
++  <component name="com.intellij.coverage.CoverageDataManagerImpl">
++    <SUITE FILE_PATH="coverage/ITC$Registry.ic" NAME="Registry Coverage Results" MODIFIED="1604156579685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/libraries/com_sun_xml_bind_jaxb_core_2_3_0_1.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/libraries/com_sun_xml_bind_jaxb_core_2_3_0_1.xml	(date 1603830044907)
++++ .idea/libraries/com_sun_xml_bind_jaxb_core_2_3_0_1.xml	(date 1603830044907)
+@@ -0,0 +1,10 @@
++<component name="libraryTable">
++  <library name="com.sun.xml.bind:jaxb-core:2.3.0.1" type="repository">
++    <properties maven-id="com.sun.xml.bind:jaxb-core:2.3.0.1" />
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/com/sun/xml/bind/jaxb-core/2.3.0.1/jaxb-core-2.3.0.1.jar!/" />
++    </CLASSES>
++    <JAVADOC />
++    <SOURCES />
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <bytecodeTargetLevel>\r\n      <module name=\"ITC\" target=\"1.5\" />\r\n    </bytecodeTargetLevel>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(revision 99cb0965488a125d24ffda81c4ef11889b74bd08)
++++ .idea/compiler.xml	(date 1604780013795)
+@@ -1,8 +1,13 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="CompilerConfiguration">
+-    <bytecodeTargetLevel>
+-      <module name="ITC" target="1.5" />
+-    </bytecodeTargetLevel>
++    <annotationProcessing>
++      <profile name="Maven default annotation processors profile" enabled="true">
++        <sourceOutputDir name="target/generated-sources/annotations" />
++        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
++        <outputRelativeToContentRoot value="true" />
++        <module name="ITC" />
++      </profile>
++    </annotationProcessing>
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/jarRepositories.xml	(date 1603829619319)
++++ .idea/jarRepositories.xml	(date 1603829619319)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RemoteRepositoriesConfiguration">
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Central Repository" />
++      <option name="url" value="https://repo.maven.apache.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Maven Central repository" />
++      <option name="url" value="https://repo1.maven.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="jboss.community" />
++      <option name="name" value="JBoss Community repository" />
++      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
++    </remote-repository>
++  </component>
++</project>
+\ No newline at end of file
+Index: src/main/java/Process/AvailabiltyOfRoom.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Process;\r\n\r\npublic class AvailabiltyOfRoom {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/Process/AvailabiltyOfRoom.java	(revision 99cb0965488a125d24ffda81c4ef11889b74bd08)
++++ src/main/java/Process/AvailabiltyOfRoom.java	(date 1604773021226)
+@@ -1,4 +1,301 @@
+ package Process;
+ 
++import Problem.Class;
++import Problem.Room;
++import Problem.Time;
++import Solution.SolutionClass;
++
++import java.util.*;
++
+ public class AvailabiltyOfRoom {
++
++    private int Id;
++    private int[][][] availability;
++    private Set<Class> classes = new HashSet<>();
++
++    public AvailabiltyOfRoom(Room room){
++        //classes=new ArrayList<>();
++        //unavailability= r.getUnavailability();
++        Id=room.getId();
++        availability = new int[Registry.getProblem().getNrWeeks()+1][Registry.getProblem().getNrDays()+1][Registry.getProblem().getSlotsPerDay()+1];
++
++        for(Time t: room.getUnavailability()) {
++            String weeks=t.getWeeks();
++            String days=t.getDays();
++            int start=t.getStart();
++            int end=t.getEnd();
++            for (int i=0; i < weeks.length(); i++) {
++                if(weeks.charAt(i)=='1')
++                {
++                    for (int j=0; j < days.length(); j++){
++                        if(days.charAt(j)=='1') {
++                            for (int k = start; k <= end; k++) {
++                                availability[i][j][k] = -404;
++                                 //System.out.println(+i +" " +j +" " +k +" " +" " +availability[i][j][k]);
++                            }
++                        }
++                    }
++                }
++
++            }
++        }
++
++    }
++
++    public boolean isRoomFreeThisTime(Time t)
++    {
++        String weeks=t.getWeeks();
++        String days=t.getDays();
++        int start=t.getStart();
++        int end=t.getEnd();
++        for (int i=0; i < weeks.length(); i++) {
++            if (weeks.charAt(i) == '1') {
++                for (int j = 0; j < days.length(); j++)
++                {
++                    if (days.charAt(j) == '1') {
++                        for (int k = start; k <= end; k++) {
++                            if (availability[i][j][k] != 0){
++                                //System.out.println("unavailable by " +availability[i][j][k]);
++                                return false;
++                            }
++
++                        }
++                    }
++                }
++
++            }
++
++        }
++        return true;
++
++    }
++
++    public boolean AssignRoomToClass(int id,Time t)
++    {
++        boolean flag=isRoomFreeThisTime(t);
++        if(flag) {
++            String weeks = t.getWeeks();
++            String days = t.getDays();
++            int start = t.getStart();
++            int end = t.getEnd();
++            for (int i = 0; i < weeks.length(); i++) {
++                if (weeks.charAt(i) == '1') {
++                    for (int j = 0; j < days.length(); j++){
++                        if (days.charAt(j) == '1') {
++                            for (int k = start; k <= end; k++) {
++                                availability[i][j][k] = id;
++                                // if(room.getId().equals("3"))
++                                //   System.out.println("availability of room " +room.getId() +"changed successfuly" +i +" " +j +" " +k +" " +availability[i][j][k]);
++                            }
++
++                        }
++                    }
++                }
++            }
++            return true;
++        }
++        else
++            //System.out.println("Room was unavailable");
++            return false;
++    }
++
++
++    public void printAvailability()
++    {
++        for(int i = 0; i< Registry.getProblem().getNrWeeks(); i++)
++        {
++            System.out.println("\n----------Week " +i +"----------");
++            for(int j = 0; j< Registry.getProblem().getNrDays(); j++)
++            {
++                System.out.println("\nDay " +j);
++                for(int k = 0; k< Registry.getProblem().getSlotsPerDay(); k++) {
++                    System.out.print(" " +availability[i][j][k]);
++                }
++
++            }
++        }
++    }
++
++    public void AssignRandomClassToRoom()
++    {
++     //   System.out.println("Handling Room: " +Id);
++
++        for(Class c: classes)
++        {
++            // System.out.println("handlind class " +c.getClass_id());
++            if(c.getAssignments().getSolutionClass().getRoomId()==0)
++            {
++                for(Time t: c.getAssignments().getTimes())
++                {
++                    if(isRoomFreeThisTime(t)){
++                        SolutionClass tempSolutionClass= new SolutionClass(c.getClassId(),Registry.findRoomById(Id),t);
++                        if(c.getAssignments().checkClassforConstraints(tempSolutionClass)) {
++                             if (c.getAssignments().getSolutionClass().setRoomAndTime(Registry.findRoomById(Id), t)) {
++                                System.out.println("Done with Rooms");
++                                break;
++                            }
++                        }
++                    }
++
++                }
++            }
++        }
++
++    }
++
++    public void addClass(Class c)
++    {
++        classes.add(c);
++    }
++
++    public ArrayList<Time> sortTimesByCasualties(ArrayList<Time> times)
++    {
++        ArrayList<Class> classes =new ArrayList<>();
++        ArrayList<Time> removedTimes= new ArrayList<>();
++        for(Time t:times)
++        {
++            ArrayList<Integer> listOdIds= this.IsAssignedTo(t);
++            if(listOdIds.contains(-404))//room unavailable
++                removedTimes.add(t);
++            //ArrayList<Class> classes =new ArrayList<>();
++            for(Integer i:listOdIds)
++            {
++                if(i!=-404) {
++                    Class c = Registry.findClassById(i);
++                    //System.out.println(c.getClassId());
++                    if (!classes.contains(c))
++                        classes.add(c);
++                }
++            }
++
++        }
++        times.removeAll(removedTimes);
++        if(!classes.isEmpty()) {
++            //for(Class c:classes)
++               // System.out.println(c.toString());
++            //System.out.println("Classes " +classes.size());
++            classes.sort(Comparator.comparing((Class c) -> c.getRooms().size() * c.getTime().size())
++                    .reversed()
++                    .thenComparing((Class c) -> c.getAssignments().getRequiredConstraints().size())
++                    .thenComparing((Class c) -> c.getAssignments().getOtherClassesEvolvedInConstraints().size()));
++        }
++        ArrayList<Time> sortedTimes=new ArrayList<Time>();
++        for(int i=0 ; i<classes.size() ; i++) sortedTimes.add(null);
++        for (Time t:times)
++        {
++            ArrayList<Integer> listOdIds= this.IsAssignedTo(t);
++            for (int i:listOdIds)
++            {
++                if(!classes.isEmpty() && classes.contains(Registry.findClassById(i)) && i!=-404)
++                    sortedTimes.set(classes.indexOf(Registry.findClassById(i)),t);
++
++            }
++        }
++        while(sortedTimes.remove(null))
++          //  System.out.println("Hey!");
++       // System.out.println(times.size() +" " +sortedTimes.size());
++        if(sortedTimes.isEmpty())
++            return times;
++        return sortedTimes;
++
++    }
++
++
++    public ArrayList<Integer> IsAssignedTo(Time t)
++    {
++        ArrayList<Integer> list = new ArrayList<>();
++        String weeks=t.getWeeks();
++        String days=t.getDays();
++        int start=t.getStart();
++        int end=t.getEnd();
++        for (int i=0; i < weeks.length(); i++) {
++            if (weeks.charAt(i) == '1') {
++                for (int j = 0; j < days.length(); j++)
++                {
++                    if (days.charAt(j) == '1') {
++                        for (int k = start; k <= end; k++) {
++                            if (availability[i][j][k] != 0 ) {
++                                if (!(list.contains(availability[i][j][k]))) {
++                                    list.add(availability[i][j][k]);
++                                    //System.out.println("unavailable by " +availability[i][j][k]);
++                                }
++                            }
++
++                        }
++
++                    }
++                }
++            }
++        }
++        return list;
++    }
++
++    public void removeRoomfromClass(int id)
++    {
++        Time t = Registry.findClassById(id).getAssignments().getCurrentTime(); //System.out.println(" SC900 " +Main.registry.getClassById(id).getAvailabilitiesforClass().getCurrentTime());
++        String weeks=t.getWeeks();
++        String days=t.getDays();
++        int start=t.getStart();
++        int end=t.getEnd();
++        for (int i=0; i < weeks.length(); i++) {
++            if (weeks.charAt(i) == '1') {
++                for (int j = 0; j < days.length(); j++){
++                    if (days.charAt(j) == '1') {
++                        for (int k = start; k <= end; k++) {
++                            availability[i][j][k] = 0;
++                            // if(room.getId().equals("3"))
++                            // System.out.println("availability of room " +room.getId() +"changed successfuly" +i +" " +j +" " +k +" " +availability[i][j][k]);
++                        }
++
++                    }
++                }
++            }
++        }
++        Class c=Registry.findClassById(id);
++        c.getAssignments().setCurrentRoom(null);
++        c.getAssignments().setCurrentTime(null);
++        c.getAssignments().getSolutionClass().setRoomAndTime(null,null);
++        c.getAssignments().setRooms(new ArrayList<>(c.getRooms()));
++        c.getAssignments().setTimes(new ArrayList<>(c.getTime()));
++    }
++
++    public void removeRoomfromClassThisTime(int id,Time t)
++    {
++        //Time t = Registry.findClassById(id).getAssignments().getCurrentTime(); //System.out.println(" SC900 " +Main.registry.getClassById(id).getAvailabilitiesforClass().getCurrentTime());
++        String weeks=t.getWeeks();
++        String days=t.getDays();
++        int start=t.getStart();
++        int end=t.getEnd();
++        for (int i=0; i < weeks.length(); i++) {
++            if (weeks.charAt(i) == '1') {
++                for (int j = 0; j < days.length(); j++){
++                    if (days.charAt(j) == '1') {
++                        for (int k = start; k <= end; k++) {
++                            availability[i][j][k] = 0;
++                            // if(room.getId().equals("3"))
++                            // System.out.println("availability of room " +room.getId() +"changed successfuly" +i +" " +j +" " +k +" " +availability[i][j][k]);
++                        }
++
++                    }
++                }
++            }
++        }
++        Class c=Registry.findClassById(id);
++       // c.getAssignments().setCurrentRoom(null);
++       // c.getAssignments().setCurrentTime(null);
++        c.getAssignments().getSolutionClass().setRoomAndTime(null,null);
++        c.getAssignments().setRooms(new ArrayList<>(c.getRooms()));
++        c.getAssignments().setTimes(new ArrayList<>(c.getTime()));
++    }
++
++    public void sortClasses() {
++
++        ArrayList<Class> sortedList = new ArrayList<>(classes);
++        sortedList.sort(Comparator.comparing(
++                (Class c)->c.getTime().size()*c.getRooms().size())
++                .reversed()
++                .thenComparing((Class c)->c.getAssignments().getRequiredConstraints().size())
++                .thenComparing((Class c)->c.getAssignments().getOtherClassesEvolvedInConstraints().size()));
++        classes=new HashSet<>(sortedList);
++    }
+ }
