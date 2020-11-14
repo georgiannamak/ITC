@@ -48,8 +48,21 @@ public class Constraint {
             S = Integer.parseInt(clean);//System.out.println(S);
             if (!Registry.areTimesOverlaped(c1.getDays(), c2.getDays()) || !Registry.areTimesOverlaped(c1.getWeeks(), c2.getWeeks()))
                 return true;
-            else return c1.getEnd() + S <= c2.getStart() || c2.getEnd() + S <= c2.getStart();
-        } else {
+            else return c1.getEnd() + S <= c2.getStart() || c2.getEnd() + S <= c2.getStart();}
+        else if(type.contains("MaxBlock")) {
+           String[] types=type.split(",");
+           types[0] = types[0].replaceAll("\\D+", ""); //remove non-digits
+            types[1]=types[1].replaceAll("\\D+", "");
+            int M=Integer.parseInt(types[0]);
+             S=Integer.parseInt(types[1]);
+            System.out.println("s="+S +" m="+M);
+             return true;
+
+        }
+        else if(type.contains("MaxDayLoad")){
+            return true;
+        }
+         else {
             switch (type) {
                 case "SameAttendees":
                     //System.out.println("Same attendees fom" +c1.getId() +"and " +c2.getId());
@@ -103,7 +116,10 @@ public class Constraint {
                         return true;
                     else
                         return first(c1.getWeeks()) == first(c2.getWeeks()) && first(c1.getDays()) == first(c2.getDays()) && c1.getEnd() <= c2.getStart();
-
+                case "SameWeeks":
+                    if(Registry.timeOrTime(c1.getWeeks(),c2.getWeeks()).equals(c1.getWeeks()))
+                        return true;
+                    else return Registry.timeOrTime(c1.getWeeks(),c2.getWeeks()).equals(c2.getWeeks());
                 default:
                     System.out.println("There was error with constraints " + type);
                     return false;

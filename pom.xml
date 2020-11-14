@@ -32,7 +32,11 @@
             <version>2.3.0-b170127.1453</version>
         </dependency>
 
-
+        <dependency>
+             <groupId>junit</groupId>
+             <artifactId>junit</artifactId>
+             <version>4.13.1</version>
+        </dependency>
     </dependencies>
 
 </project>

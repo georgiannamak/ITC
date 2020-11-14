@@ -29,9 +29,14 @@ public class PossibleAssignmentsOfClass {
         solutionClass=new SolutionClass(this);
         currentRoom=null;
         currentTime=null;
-        constraints= new HashSet<Constraint>();
-        requiredConstraints = new HashSet<Constraint>();
-        otherClassesEvolvedInConstraints=new HashSet<Class>();
+        constraints= new HashSet<>();
+        requiredConstraints = new HashSet<>();
+        otherClassesEvolvedInConstraints=new HashSet<>();
+        if(rooms.size()==0) {
+            currentRoom = null;
+            solutionClass.setRoomId(-5);
+        }
+
     }
 
     public void addConstraint(Constraint constraint)
@@ -65,16 +70,10 @@ public class PossibleAssignmentsOfClass {
             }
             if(currentRoom!=null && currentTime!=null)
             {
-               // if(checkClassforConstraints(new SolutionClass(id,currentRoom,currentTime))) {
                     if (!solutionClass.setRoomAndTime(currentRoom, currentTime)) {
                         rooms.remove(currentRoom);
                         currentRoom = null;
-                    }
-                   // else System.out.println("Sucess "+id);
-               /* }else
-                {
-                   break;
-                }*/
+                    } else System.out.println("Sucess "+id);
             }
           //  i++;
         }
@@ -102,7 +101,7 @@ public class PossibleAssignmentsOfClass {
             }
             if(rooms.isEmpty())
             {
-                //System.out.println("There is no room available for class " +c.getClass_id() +" at time " + currentTime.getWeeks() + " " + currentTime.getDays() +" " +currentTime.getStart());
+               // System.out.println("There is no room available for class " +id +" at time " + currentTime.getWeeks() + " " + currentTime.getDays() +" " +currentTime.getStart());
                 times.remove(currentTime);
                 currentRoom=null;
                 currentTime=null;
@@ -140,25 +139,28 @@ public class PossibleAssignmentsOfClass {
         if (currentRoom!=null) {
             currentRoom.getAvailability().removeRoomfromClassThisTime(id, currentTime);
             for (Time t : times) {
+                boolean overlapped=false;
                 if (Registry.areTimesOverlaped(t.getWeeks(), currentTime.getWeeks())) {
                     if (Registry.areTimesOverlaped(t.getDays(), currentTime.getDays())) {
-                        if (t.getEnd() < currentTime.getStart() || currentTime.getEnd() < t.getStart()) {
-                            if (currentRoom != null && currentRoom.getAvailability().isRoomFreeThisTime(t) && t.IsDifeerentTime(currentTime)) {
-                                Time oldCurrent = currentTime;
-
-                                SolutionClass tempSolutionClass = new SolutionClass(id, currentRoom, t);
-                                if (checkClassforConstraints(tempSolutionClass)) {
-
-                                    if (solutionClass.setRoomAndTime(currentRoom, t)) {
-                                        // currentRoom.getAvailability().removeRoomfromClassThisTime(id,oldCurrent);
-                                        System.out.println("Just changed the time to id " + id + " ");
-                                        return true;
-
-                                    } else currentTime = oldCurrent;
-                                }else currentTime=oldCurrent;
-                            }
+                        if (!(t.getEnd() < currentTime.getStart() || currentTime.getEnd() < t.getStart())) {
+                            overlapped=true;
                         }
                     }
+                }
+
+                if (currentRoom != null && currentRoom.getAvailability().isRoomFreeThisTime(t) && t.IsDifeerentTime(currentTime) && !overlapped) {
+                    Time oldCurrent = currentTime;
+
+                    SolutionClass tempSolutionClass = new SolutionClass(id, currentRoom, t);
+                    if (checkClassforConstraints(tempSolutionClass)) {
+
+                        if (solutionClass.setRoomAndTime(currentRoom, t)) {
+                            // currentRoom.getAvailability().removeRoomfromClassThisTime(id,oldCurrent);
+                            System.out.println("Just changed the time to id " + id + " ");
+                            return true;
+
+                        } else currentTime = oldCurrent;
+                    }else currentTime=oldCurrent;
                 }
 
 
@@ -175,7 +177,10 @@ public class PossibleAssignmentsOfClass {
                             c.getAssignments().getCurrentRoom().getAvailability().removeRoomfromClass(c.getClassId());
                     }
                 }*/
+                  System.out.println("Removed everything from : " + id);
+
                  for (Class otherClass : otherClassesEvolvedInConstraints) {
+
                    if (otherClass.getAssignments().getCurrentRoom() != null)
                         otherClass.getAssignments().getCurrentRoom().getAvailability().removeRoomfromClass(otherClass.getClassId());
                 }
@@ -206,7 +211,7 @@ public class PossibleAssignmentsOfClass {
                         SolutionClass solutionClass = new SolutionClass(sc.getId(), randRoom,t);
                         if (sc.getAssignmentsOfClass().checkClassforConstraints(solutionClass)) {
                             minT=t;
-                            System.out.println("Constarint valide for id " +solutionClass.getId());
+                            //System.out.println("Constarint valide for id " +solutionClass.getId());
                             break;
                         }
                     }
@@ -214,13 +219,13 @@ public class PossibleAssignmentsOfClass {
                         for (Integer i : randRoom.getAvailability().IsAssignedTo(minT))
                             Registry.findClassById(i).getAssignments().findAlternativeTimeForCurrentRoom();
                         if (sc.setRoomAndTime(randRoom, minT)) {
-                            System.out.println("Exchanged " +sc.getId());
+                            //System.out.println("Exchanged " +sc.getId());
                             break;
                         }
                         else {
                             System.out.println("something went wrong!!!");
-                            for(int j:randRoom.getAvailability().IsAssignedTo(minT))
-                                System.out.println("Assigned to " +j);
+                           // for(int j:randRoom.getAvailability().IsAssignedTo(minT))
+                                //System.out.println("Assigned to " +j);
                         }
                     }
 
