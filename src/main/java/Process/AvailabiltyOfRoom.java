@@ -118,7 +118,7 @@ public class AvailabiltyOfRoom {
 
     public void AssignRandomClassToRoom()
     {
-     //   System.out.println("Handling Room: " +Id);
+      // System.out.println("Handling Room: " +Id);
 
         for(Class c: classes)
         {
@@ -128,10 +128,10 @@ public class AvailabiltyOfRoom {
                 for(Time t: c.getAssignments().getTimes())
                 {
                     if(isRoomFreeThisTime(t)){
-                        SolutionClass tempSolutionClass= new SolutionClass(c.getClassId(),Registry.findRoomById(Id),t);
+                        SolutionClass tempSolutionClass= new SolutionClass(c.getClassId(),Id,t);
                         if(c.getAssignments().checkClassforConstraints(tempSolutionClass)) {
-                             if (c.getAssignments().getSolutionClass().setRoomAndTime(Registry.findRoomById(Id), t)) {
-                                System.out.println("Done with Rooms");
+                             if (c.getAssignments().getSolutionClass().setRoomAndTime(Id, t)) {
+                                //System.out.println("Done with Rooms");
                                 break;
                             }
                         }
@@ -179,7 +179,7 @@ public class AvailabiltyOfRoom {
                     .thenComparing((Class c) -> c.getAssignments().getRequiredConstraints().size())
                     .thenComparing((Class c) -> c.getAssignments().getOtherClassesEvolvedInConstraints().size()));
         }
-        ArrayList<Time> sortedTimes=new ArrayList<Time>();
+        ArrayList<Time> sortedTimes=new ArrayList<>();
         for(int i=0 ; i<classes.size() ; i++) sortedTimes.add(null);
         for (Time t:times)
         {
@@ -297,5 +297,9 @@ public class AvailabiltyOfRoom {
                 .thenComparing((Class c)->c.getAssignments().getRequiredConstraints().size())
                 .thenComparing((Class c)->c.getAssignments().getOtherClassesEvolvedInConstraints().size()));
         classes=new HashSet<>(sortedList);
+    }
+
+    public Set<Class> getClasses() {
+        return classes;
     }
 }

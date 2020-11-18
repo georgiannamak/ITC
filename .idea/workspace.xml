@@ -19,19 +19,16 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/Handling-Students" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1bef2de-635d-4295-8ea1-fe6337792b15" name="Default Changelist" comment="Refactoring methods using streams">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Process/Registry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Process/Registry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/solution.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/solution.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Process/PossibleAssignmentsOfClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Process/PossibleAssignmentsOfClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Process/Registry.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Process/Registry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/solution.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/solution.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Problem/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Problem/Room.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Process/AvailabiltyOfRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Process/AvailabiltyOfRoom.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +60,7 @@
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Phase-2" />
+        <entry key="$PROJECT_DIR$" value="Handling-Students" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -107,6 +104,11 @@
       <recent name="junit.framework.TestCase" />
     </key>
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="Registry" />
+    </option>
+  </component>
   <component name="RunManager" selected="Application.Registry">
     <configuration name="Registry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Process.Registry" />
@@ -133,6 +135,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RegistryTest.testFindClassById" />
+        <item itemvalue="Application.Registry" />
         <item itemvalue="Application.Registry" />
         <item itemvalue="JUnit.RegistryTest.testFindClassById" />
         <item itemvalue="Application.Registry" />
@@ -153,6 +157,7 @@
       <workItem from="1604696776935" duration="6254000" />
       <workItem from="1604779935056" duration="22015000" />
       <workItem from="1605275937431" duration="22509000" />
+      <workItem from="1605385000446" duration="75640000" />
     </task>
     <task id="LOCAL-00001" summary="Phase1 completed?">
       <created>1604780629255</created>
@@ -168,7 +173,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605367063311</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Refactoring methods using streams">
+      <created>1605373363592</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1605373363592</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Refactoring methods using streams">
+      <created>1605724936430</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605724936430</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,7 +214,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="origin/Handling-Students" />
                       </list>
                     </value>
                   </entry>
@@ -226,50 +245,50 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1603830420428" />
-    <state x="574" y="88" key="#com.intellij.ide.util.MemberChooser" timestamp="1604665189770">
+    <state x="574" y="88" key="#com.intellij.ide.util.MemberChooser" timestamp="1605624664871">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="88" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1604665189770" />
+    <state x="574" y="88" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1605624664871" />
     <state x="147" y="64" width="1228" height="687" key="DiffContextDialog" timestamp="1604780847002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="64" width="1228" height="687" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1604780847002" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1605299311569">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1605528003086">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1605299311569" />
-    <state width="1031" height="248" key="GridCell.Tab.0.bottom" timestamp="1605371452455">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1605528003086" />
+    <state width="1493" height="248" key="GridCell.Tab.0.bottom" timestamp="1605724863056">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1031" height="248" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1605371452455" />
-    <state width="1031" height="248" key="GridCell.Tab.0.center" timestamp="1605371452455">
+    <state width="1493" height="248" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1605724863056" />
+    <state width="1493" height="248" key="GridCell.Tab.0.center" timestamp="1605724863056">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1031" height="248" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1605371452455" />
-    <state width="1031" height="248" key="GridCell.Tab.0.left" timestamp="1605371452451">
+    <state width="1493" height="248" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1605724863056" />
+    <state width="1493" height="248" key="GridCell.Tab.0.left" timestamp="1605724863055">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1031" height="248" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1605371452451" />
-    <state width="1031" height="248" key="GridCell.Tab.0.right" timestamp="1605371452455">
+    <state width="1493" height="248" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1605724863055" />
+    <state width="1493" height="248" key="GridCell.Tab.0.right" timestamp="1605724863056">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1031" height="248" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1605371452455" />
-    <state width="1493" height="252" key="GridCell.Tab.1.bottom" timestamp="1605296167542">
+    <state width="1493" height="248" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1605724863056" />
+    <state width="1493" height="252" key="GridCell.Tab.1.bottom" timestamp="1605652507597">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="252" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1605296167542" />
-    <state width="1493" height="252" key="GridCell.Tab.1.center" timestamp="1605296167542">
+    <state width="1493" height="252" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1605652507597" />
+    <state width="1493" height="252" key="GridCell.Tab.1.center" timestamp="1605652507597">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="252" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1605296167542" />
-    <state width="1493" height="252" key="GridCell.Tab.1.left" timestamp="1605296167542">
+    <state width="1493" height="252" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1605652507597" />
+    <state width="1493" height="252" key="GridCell.Tab.1.left" timestamp="1605652507597">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="252" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1605296167542" />
-    <state width="1493" height="252" key="GridCell.Tab.1.right" timestamp="1605296167542">
+    <state width="1493" height="252" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1605652507597" />
+    <state width="1493" height="252" key="GridCell.Tab.1.right" timestamp="1605652507597">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="252" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1605296167542" />
+    <state width="1493" height="252" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1605652507597" />
     <state x="446" y="0" key="SettingsEditor" timestamp="1605372957349">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -278,10 +297,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="338" y="98" width="1350" height="638" key="ShowDiffWithBranchDialog/0.0.1536.824@0.0.1536.824" timestamp="1604780847002" />
-    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1605368466991">
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1605724990497">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605368466991" />
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605724990497" />
     <state x="498" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1604147620421">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -290,14 +309,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="577" y="322" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1605368445555" />
-    <state x="533" y="0" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1605294422732">
+    <state x="533" y="0" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1605650628458">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="533" y="0" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1605294422732" />
-    <state x="479" y="129" width="577" height="656" key="find.popup" timestamp="1605297672350">
+    <state x="533" y="0" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1605650628458" />
+    <state x="479" y="129" width="577" height="656" key="find.popup" timestamp="1605722673939">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="479" y="129" width="577" height="656" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1605297672350" />
+    <state x="479" y="129" width="577" height="656" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1605722673939" />
     <state x="557" y="43" key="git4idea.branch.GitSmartOperationDialog" timestamp="1604780514015">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -306,14 +325,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="569" y="308" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.824@0.0.1536.824" timestamp="1605367283496" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1605293924425">
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup" timestamp="1605442367087">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1605293924425" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1604858772630">
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1605442367087" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1605517122639">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1604858772630" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1605517122639" />
     <state x="491" y="317" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1603831013214">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -324,63 +343,53 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>114</line>
+          <line>159</line>
           <option name="timeStamp" value="111" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>225</line>
+          <line>270</line>
           <option name="timeStamp" value="194" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>229</line>
+          <line>274</line>
           <option name="timeStamp" value="195" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>186</line>
-          <option name="timeStamp" value="197" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>169</line>
+          <line>214</line>
           <option name="timeStamp" value="217" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>170</line>
+          <line>215</line>
           <option name="timeStamp" value="218" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>171</line>
+          <line>216</line>
           <option name="timeStamp" value="219" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>172</line>
+          <line>217</line>
           <option name="timeStamp" value="220" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>173</line>
+          <line>218</line>
           <option name="timeStamp" value="221" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>175</line>
+          <line>220</line>
           <option name="timeStamp" value="222" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>176</line>
+          <line>221</line>
           <option name="timeStamp" value="223" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>188</line>
-          <option name="timeStamp" value="224" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/Process/RegistryTest.java</url>
@@ -389,8 +398,96 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
-          <line>108</line>
+          <line>153</line>
           <option name="timeStamp" value="231" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/StudentOptions.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="244" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/Registry.java</url>
+          <line>153</line>
+          <option name="timeStamp" value="258" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/Registry.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="273" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/Registry.java</url>
+          <line>140</line>
+          <option name="timeStamp" value="277" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="279" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="280" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>317</line>
+          <option name="timeStamp" value="283" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>326</line>
+          <option name="timeStamp" value="287" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>316</line>
+          <option name="timeStamp" value="288" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>324</line>
+          <option name="timeStamp" value="289" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>319</line>
+          <option name="timeStamp" value="290" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>322</line>
+          <option name="timeStamp" value="291" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>325</line>
+          <option name="timeStamp" value="292" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>330</line>
+          <option name="timeStamp" value="293" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>76</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="294" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="295" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Process/PossibleAssignmentsOfClass.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="296" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

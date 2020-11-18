@@ -1,9 +1,10 @@
 package Solution;
 
 import Problem.Room;
-import Problem.Student;
+import Solution.SolutionStudent;
 import Problem.Time;
 import Process.PossibleAssignmentsOfClass;
+import Process.Registry;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -19,36 +20,41 @@ public class SolutionClass {
     @XmlAttribute
     private String weeks;
     @XmlAttribute(name = "room")
-    private int roomId;
+    private Integer roomId;
     @XmlElement(name = "student")
-    private ArrayList<Student> students;
+    private ArrayList<SolutionStudent> students;
 
     @XmlTransient
     private PossibleAssignmentsOfClass assignmentsOfClass;
+
     @XmlTransient
     private int end;
 
     public SolutionClass(PossibleAssignmentsOfClass assignmentsOfClass) {
         this.id = assignmentsOfClass.getId();
         this.assignmentsOfClass=assignmentsOfClass;
+        students= new ArrayList<>();
+        roomId=0;
     }
 
-    public SolutionClass(int id, Room room, Time t)
+    public SolutionClass(int id, int roomId, Time t)
     {
         this.id=id;
-        this.roomId=room.getId();
+        this.roomId=roomId;
         this.start=t.getStart();
         this.days=t.getDays();
         this.weeks=t.getWeeks();
         this.end=t.getEnd();
     }
 
-    public boolean setRoomAndTime(Room room, Time t) {
+    public boolean setRoomAndTime(Integer roomid, Time t) {
         //System.out.println(" "+id);
-        int i = 0;
-        if (room != null && t != null) {
+
+        //int i = 0;
+        if (roomid != null && t != null) {
+            Room room=Registry.findRoomById(roomid);
             if (room.getAvailability().AssignRoomToClass(id, t)) {
-                roomId = room.getId();
+                roomId = roomid;
                 days = t.getDays();
                 weeks = t.getWeeks();
                 start = t.getStart();
@@ -96,11 +102,11 @@ public class SolutionClass {
         return roomId;
     }
 
-    public void setRoomId(int roomId) {
+    public void setRoomId(Integer roomId) {
         this.roomId = roomId;
     }
     @XmlTransient
-    public ArrayList<Student> getStudents() {
+    public ArrayList<SolutionStudent> getStudents() {
         return students;
     }
     @XmlTransient
@@ -112,7 +118,7 @@ public class SolutionClass {
         this.id = id;
     }
 
-    public void setStudents(ArrayList<Student> students) {
+    public void setStudents(ArrayList<SolutionStudent> students) {
         this.students = students;
     }
     @XmlTransient

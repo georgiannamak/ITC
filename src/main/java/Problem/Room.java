@@ -70,8 +70,8 @@ public class Room {
         this.unavailability = unavailability;
     }
 
-    @Override
-    public String toString() {
+   // @Override
+   /* public String toString() {
         return "Room{" +
                 "id=" + id +
                 ", capacity=" + capacity +
@@ -79,7 +79,7 @@ public class Room {
                 ", unavailability=" + unavailability +
                 ", availability=" + availability +
                 '}';
-    }
+    }*/
 
 
 }
