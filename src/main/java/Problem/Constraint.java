@@ -165,4 +165,23 @@ public class Constraint {
         return true;
     }
 
+    public Set<SolutionClass> isConstraintValideSoFar()
+    {
+        Set<SolutionClass> problematic= new HashSet<>();
+        for(Class c:classes)
+        {
+            if(c.getAssignments().getSolutionClass().getRoomId()==0 && !problematic.contains(c.getAssignments().getSolutionClass()))
+            {
+                for(Class c2:classes)
+                {
+                    if(c2!=c && c2.getAssignments().getSolutionClass().getRoomId()!=0) {
+                        if (!valideConstraintForTheseClasses(c.getAssignments().getSolutionClass(), c2.getAssignments().getSolutionClass()))
+                            problematic.add(c2.getAssignments().getSolutionClass());
+                    }
+                }
+            }
+        }
+        return problematic;
+    }
+
 }

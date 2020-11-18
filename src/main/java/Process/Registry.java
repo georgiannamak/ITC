@@ -4,6 +4,7 @@ import Problem.Problem;
 import Problem.Constraint;
 import Problem.Room;
 import Problem.Class;
+import Problem.Course;
 import Solution.Solution;
 import Solution.SolutionClass;
 import Problem.Time;
@@ -35,12 +36,23 @@ public class Registry {
             createClassPossibleAssignments();
             handleConstraints();
             findClassesForRooms();
+            StudentService studentService= new StudentService();
+            studentService.connectStudentCoursesWithProblemCourses();
+            studentService.assignStudentsToCourses();
+
             //ObjectToXML xml2;
             int k = 0;
-            assignRandomRoomToClasses();
+            assignRandomRoomToClasses2();
             calculatePenalty();
-           while (k <5  && penalty > 0) {
+            for(Class c:problem.getClasses())
+            {
+                c.getAssignments().setRooms(findClassById(c.getClassId()).getRooms());
+                c.getAssignments().setTimes(findClassById(c.getClassId()).getTime());
+            }
+           while (k <2 && penalty > 0) {
                System.out.println("k= " + k);
+               //handleHardConstraints();
+
                handleClassesWithoutRoom();
                calculatePenalty();
 
@@ -48,7 +60,7 @@ public class Registry {
                calculatePenalty();
 
                assignClassToRooms();
-               calculatePenalty();
+                calculatePenalty();
 
                handleClassesWithHardConstraints();
                calculatePenalty();
@@ -61,8 +73,8 @@ public class Registry {
            n++;
         }
         //PHASE2
-            n=0;
-            solution = bestSolution;
+           // n=0;
+           /* solution = bestSolution;
             problem = bestProblem;
             classesWithoutRoom = bestClassesWithoutRoom;
             for (SolutionClass sc : classesWithoutRoom) {
@@ -76,7 +88,7 @@ public class Registry {
             System.out.println("Starting Phase 2");
             calculatePenalty();
             int k = 0;
-            while (k < 10 && penalty > 0) {
+            while (k < 5 && penalty > 0) {
                 System.out.println("k= " + k);
                 //handleClassesWithoutRoom();
                 //calculatePenalty();
@@ -94,8 +106,55 @@ public class Registry {
                 calculatePenalty();
 
                 k++;
+            }*/
+            for(SolutionClass sc:bestSolution.getClasses()) {
+                if (sc.getRoomId() == -5)
+                    sc.setRoomId(null);
             }
+            ObjectToXML xml=new ObjectToXML(bestSolution);
+    }
 
+    private static void assignRandomRoomToClasses2() {
+        ArrayList<Class> classesToHandle= new ArrayList<Class>(problem.getClasses());
+        classesToHandle.removeIf((Class c)->c.getRooms().size()==0);
+        classesToHandle.sort(Comparator.comparing((Class c)->c.getTime().size()*c.getRooms().size()));
+        ArrayList<Room> rooms = new ArrayList<>(problem.getRooms());
+        rooms.sort(Comparator.comparing((Room room)->room.getAvailability().getClasses().size()).reversed());
+        while(!classesToHandle.isEmpty()) {
+            //System.out.println("Classes");
+            int i=0;
+            while (i<problem.getClasses().size()/20 && (!classesToHandle.isEmpty())) {
+                //System.out.println("id=");
+                classesToHandle.get(0).getAssignments().assignRandomTimeAndRoom();
+                classesToHandle.remove(0);
+                i++;
+            }
+            System.out.println("Rooms");
+            int j=0;
+            while (j<rooms.size()/20 && !rooms.isEmpty()) {
+                rooms.get(0).getAvailability().AssignRandomClassToRoom();
+                rooms.remove(0);
+                j++;
+            }
+            classesToHandle.forEach((Class c)->c.getAssignments().calculateWeight());
+            classesToHandle.sort(Comparator.comparing((Class c)->c.getAssignments().getWeight()));
+            System.out.println("classes to handle : "+classesToHandle.size());
+        }
+
+    }
+
+    private static void handleHardConstraints() {
+        int i=0;
+        for(Constraint constraint:problem.getDistributions())
+        {
+            System.out.println(i++ +"/" +problem.getDistributions().size());
+            Set<SolutionClass> problematic = constraint.isConstraintValideSoFar();
+            for(SolutionClass sc:problematic){
+                System.out.println("Removing from " +sc.getId());
+                sc.getAssignmentsOfClass().getCurrentRoom().getAvailability().removeRoomfromClass(sc.getId());
+
+            }
+        }
     }
 
 
@@ -112,7 +171,6 @@ public class Registry {
     }
 
     private static void handleClassesWithHardConstraints() {
-        int i=0;
         for(SolutionClass sc: classesWithoutRoom)
             sc.getAssignmentsOfClass().calculateWeight();
         ArrayList<SolutionClass> sortedWithoutRoom= new ArrayList<SolutionClass>(classesWithoutRoom);
@@ -126,7 +184,9 @@ public class Registry {
     private static void assignBestPossibleRoomToClasses() {
         //Collections.shuffle(solution.getClasses());
         ArrayList<SolutionClass> sortedWithoutRoom= new ArrayList<SolutionClass>(classesWithoutRoom);
-        sortedWithoutRoom.sort(Comparator.comparing((SolutionClass sc)->sc.getAssignmentsOfClass().getWeight()));
+        sortedWithoutRoom.sort(Comparator.comparing((SolutionClass sc)->sc.getAssignmentsOfClass().getWeight())
+                                            .thenComparing((SolutionClass sc)->sc.getAssignmentsOfClass().getRequiredConstraints().size())
+                                            .thenComparing((SolutionClass sc)->sc.getAssignmentsOfClass().getOtherClassesEvolvedInConstraints().size()));
         for(SolutionClass sc: sortedWithoutRoom)
             sc.getAssignmentsOfClass().AssignBestPossibleRoomAndTime();
     }
@@ -205,14 +265,19 @@ public class Registry {
     public static Class findClassById(int Id)
     {
 
-        Optional<Class> first = problem.getClasses().stream().filter(c -> c.getClassId() == Id).findFirst();
-        return first.get();
+        return problem.getClasses().stream().filter(c -> c.getClassId() == Id).findFirst().orElse(null);
        // return matchningClass.
        /* for (Class c:problem.getClasses()) {
             if (c.getClassId() == Id)
                 return c;
 
         }return null;*/
+    }
+
+    public static Course findCoursebyId(int Id)
+    {
+        Optional<Course> first = problem.getCourses().stream().filter((Course c) -> c.getCourse_id() == Id).findFirst();
+        return first.get();
     }
     public static void createAvailabilitiesOfRooms() {
         problem.getRooms().forEach((Room room)->room.setAvailability(new AvailabiltyOfRoom(room)));
@@ -225,9 +290,13 @@ public class Registry {
 
     public static void assignRandomRoomToClasses()
     {
-        int i=0;
-        problem.getClasses().sort(Comparator.comparing((Class c)->c.getTime().size()*c.getRooms().size()));
-        problem.getClasses().forEach((Class c)->c.getAssignments().AssignRandomRoomAndTime());
+       // int i=0;
+        ArrayList<Class> classesToHandle= new ArrayList<Class>(problem.getClasses());
+        classesToHandle.sort(Comparator.comparing((Class c)->c.getTime().size()*c.getRooms().size()));
+        //System.out.println(problem.getClasses().size());
+        boolean flag=classesToHandle.removeIf((Class c)->c.getRooms().size()==0);
+        //System.out.println(flag+"" +problem.getClasses().size());
+        classesToHandle.forEach((Class c)->c.getAssignments().AssignRandomRoomAndTime());
 
     }
 
@@ -292,6 +361,8 @@ public class Registry {
 
         for (SolutionClass sc: sortedArray)
         {
+            //sc.getAssignmentsOfClass().setTimes(findClassById(sc.getId()).getTime());
+            //sc.getAssignmentsOfClass().setRooms(findClassById(sc.getId()).getRooms());
             Random rand=new Random();
 
             for(int i=0; i<sc.getAssignmentsOfClass().getRooms().size() ; i++)
@@ -301,9 +372,9 @@ public class Registry {
                 Time minT= null;
                 for(Time t: timesSortedByCasualties) {
 
-                    if (sc.getAssignmentsOfClass().checkClassforConstraints(new SolutionClass(sc.getId(), randRoom,t))) {
+                    if (sc.getAssignmentsOfClass().checkClassforConstraints(new SolutionClass(sc.getId(), randRoom.getId(),t))) {
                         minT=t;
-                        System.out.println("Constarint valide for id " +sc.getId());
+                        System.out.println("Constraint valide for id " +sc.getId());
                         break;
                     }
                 }
@@ -311,7 +382,7 @@ public class Registry {
                    // System.out.println(randRoom.getAvailability().IsAssignedTo(minT).get(0));
                     for (Integer c : randRoom.getAvailability().IsAssignedTo(minT))
                         findClassById(c).getAssignments().findAlternativeTimeForCurrentRoom();
-                    if (sc.setRoomAndTime(randRoom, minT)) {
+                    if (sc.setRoomAndTime(randRoom.getId(), minT)) {
                        System.out.println("Exchanged " +sc.getId());
                         break;
                     }

@@ -10,9 +10,9 @@ public class Course {
     public Course() {configurations= new ArrayList<Configuration>();}
 
     @XmlAttribute
-    private String id;
-    public void setCourse_id(String id) { this.id = id; }
-    public String getCourse_id() { return id; }
+    private int id;
+    public void setCourse_id(int id) { this.id = id; }
+    public int getCourse_id() { return id; }
 
     @XmlElement(name="config")
     private ArrayList<Configuration> configurations;
