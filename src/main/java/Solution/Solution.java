@@ -1,6 +1,7 @@
 package Solution;
 
 import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,6 +40,7 @@ public class Solution {
     public Solution() {
     }
 
+
     public void addClass(SolutionClass solutionClass)
     {
         classes.add(solutionClass);
@@ -46,5 +48,33 @@ public class Solution {
 
     public Set<SolutionClass> getClasses() {
         return classes;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getRuntime() {
+        return runtime;
+    }
+
+    public int getCores() {
+        return cores;
+    }
+
+    public String getTechnique() {
+        return technique;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getInstiturion() {
+        return institurion;
+    }
+
+    public String getCountry() {
+        return country;
     }
 }

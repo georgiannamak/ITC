@@ -3,6 +3,7 @@ package Problem;
 import java.util.ArrayList;
 import javax.xml.bind.annotation.*;
 import Process.AvailabiltyOfRoom;
+import  Process.Registry;
 
 @XmlRootElement(name="room")
 @XmlAccessorType (XmlAccessType.FIELD)
@@ -16,14 +17,18 @@ public class Room {
     private ArrayList<Travel> travel;
     @XmlElement(name="unavailable")
     private ArrayList<Time> unavailability;
+    @XmlAttribute
+    private  int penalty;
 
     @XmlTransient
     private AvailabiltyOfRoom availability;
-
+    @XmlTransient
+    private ArrayList<Integer> penaltyForClass;
 
     public Room(){
         travel = new ArrayList<>();
         unavailability = new ArrayList<>();
+        //penaltyForClass=new ArrayList<>(Registry.getProblem().getClasses().size());
     }
 
 
@@ -70,7 +75,30 @@ public class Room {
         this.unavailability = unavailability;
     }
 
-   // @Override
+    public int getPenalty() {
+        return penalty;
+    }
+
+    public void setPenalty(int penalty) {
+        this.penalty = penalty;
+    }
+
+    public int getRoomPenaltyForClass(int id)
+    {
+        return penaltyForClass.get(id-1);
+    }
+
+    public void addRoomPenalty(int id,int penalty)
+    {
+        penaltyForClass.set(id-1,penalty);
+    }
+
+    public void createRoomPenalty(int size) {
+        penaltyForClass=new ArrayList<>();
+        for(int i=0;i<size;i++)
+            penaltyForClass.add(0);
+    }
+    // @Override
    /* public String toString() {
         return "Room{" +
                 "id=" + id +

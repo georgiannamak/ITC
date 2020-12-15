@@ -12,14 +12,12 @@ public class Time  {
     @XmlAttribute
     private String weeks;
     @XmlAttribute
-    private int penalty;
+    private  int penalty;
     @XmlTransient
     private int end;
 
     public Time() {
     }
-
-    ;
 
     public Time(String days, int start, int length, String weeks) {
         this.days = days;
