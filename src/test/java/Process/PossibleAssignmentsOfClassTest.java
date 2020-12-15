@@ -5,10 +5,8 @@ import Problem.Class;
 
 public class PossibleAssignmentsOfClassTest extends TestCase {
 
-    public void testAssignRandomRoomAndTime() {
 
-    }
+    public void testCheckClassforConstraints() {
 
-    public void testFindRandomRoomforClass() {
     }
 }

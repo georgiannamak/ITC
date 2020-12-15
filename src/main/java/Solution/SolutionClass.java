@@ -72,6 +72,34 @@ public class SolutionClass {
         }
         return true;
     }
+
+    public boolean setRoomAndTimeWithCheck(Integer roomid, Time t) {
+        //System.out.println(" "+id);
+
+        if(getAssignmentsOfClass().checkClassforConstraints(this,"REQUIRED")) {
+            if (roomid != null && t != null) {
+                Room room = Registry.findRoomById(roomid);
+                if (room.getAvailability().AssignRoomToClass(id, t)) {
+                    roomId = roomid;
+                    days = t.getDays();
+                    weeks = t.getWeeks();
+                    start = t.getStart();
+                    end = t.getEnd();
+                    assignmentsOfClass.setCurrentRoom(room);
+                    assignmentsOfClass.setCurrentTime(t);
+
+                } else return false;
+            } else {
+                roomId = 0;
+                weeks = null;
+                days = null;
+                start = -1;
+                return false;
+            }
+        }else return false;
+        return true;
+    }
+
     ////////////////////////////////////
     @XmlTransient
     public int getStart() {
@@ -98,7 +126,7 @@ public class SolutionClass {
         this.weeks = weeks;
     }
     @XmlTransient
-    public int getRoomId() {
+    public Integer getRoomId() {
         return roomId;
     }
 
@@ -121,6 +149,11 @@ public class SolutionClass {
     public void setStudents(ArrayList<SolutionStudent> students) {
         this.students = students;
     }
+
+    public void setEnd(int end) {
+        this.end = end;
+    }
+
     @XmlTransient
     public int getEnd() {
        // if(end)

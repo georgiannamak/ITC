@@ -29,7 +29,7 @@ public class AvailabiltyOfRoom {
                 {
                     for (int j=0; j < days.length(); j++){
                         if(days.charAt(j)=='1') {
-                            for (int k = start; k <= end; k++) {
+                            for (int k = start; k < end; k++) {
                                 availability[i][j][k] = -404;
                                  //System.out.println(+i +" " +j +" " +k +" " +" " +availability[i][j][k]);
                             }
@@ -53,7 +53,7 @@ public class AvailabiltyOfRoom {
                 for (int j = 0; j < days.length(); j++)
                 {
                     if (days.charAt(j) == '1') {
-                        for (int k = start; k <= end; k++) {
+                        for (int k = start; k < end; k++) {
                             if (availability[i][j][k] != 0){
                                 //System.out.println("unavailable by " +availability[i][j][k]);
                                 return false;
@@ -82,7 +82,7 @@ public class AvailabiltyOfRoom {
                 if (weeks.charAt(i) == '1') {
                     for (int j = 0; j < days.length(); j++){
                         if (days.charAt(j) == '1') {
-                            for (int k = start; k <= end; k++) {
+                            for (int k = start; k < end; k++) {
                                 availability[i][j][k] = id;
                                 // if(room.getId().equals("3"))
                                 //   System.out.println("availability of room " +room.getId() +"changed successfuly" +i +" " +j +" " +k +" " +availability[i][j][k]);
@@ -129,7 +129,7 @@ public class AvailabiltyOfRoom {
                 {
                     if(isRoomFreeThisTime(t)){
                         SolutionClass tempSolutionClass= new SolutionClass(c.getClassId(),Id,t);
-                        if(c.getAssignments().checkClassforConstraints(tempSolutionClass)) {
+                        if(c.getAssignments().checkClassforConstraints(tempSolutionClass,"REQUIRED")) {
                              if (c.getAssignments().getSolutionClass().setRoomAndTime(Id, t)) {
                                 //System.out.println("Done with Rooms");
                                 break;
@@ -213,7 +213,7 @@ public class AvailabiltyOfRoom {
                 for (int j = 0; j < days.length(); j++)
                 {
                     if (days.charAt(j) == '1') {
-                        for (int k = start; k <= end; k++) {
+                        for (int k = start; k < end; k++) {
                             if (availability[i][j][k] != 0 ) {
                                 if (!(list.contains(availability[i][j][k]))) {
                                     list.add(availability[i][j][k]);
@@ -241,7 +241,7 @@ public class AvailabiltyOfRoom {
             if (weeks.charAt(i) == '1') {
                 for (int j = 0; j < days.length(); j++){
                     if (days.charAt(j) == '1') {
-                        for (int k = start; k <= end; k++) {
+                        for (int k = start; k < end; k++) {
                             availability[i][j][k] = 0;
                             // if(room.getId().equals("3"))
                             // System.out.println("availability of room " +room.getId() +"changed successfuly" +i +" " +j +" " +k +" " +availability[i][j][k]);
@@ -255,8 +255,8 @@ public class AvailabiltyOfRoom {
         c.getAssignments().setCurrentRoom(null);
         c.getAssignments().setCurrentTime(null);
         c.getAssignments().getSolutionClass().setRoomAndTime(null,null);
-        c.getAssignments().setRooms(new ArrayList<>(c.getRooms()));
-        c.getAssignments().setTimes(new ArrayList<>(c.getTime()));
+       // c.getAssignments().setRooms(new ArrayList<>(c.getRooms()));
+        //c.getAssignments().setTimes(new ArrayList<>(c.getTime()));
     }
 
     public void removeRoomfromClassThisTime(int id,Time t)
@@ -270,7 +270,7 @@ public class AvailabiltyOfRoom {
             if (weeks.charAt(i) == '1') {
                 for (int j = 0; j < days.length(); j++){
                     if (days.charAt(j) == '1') {
-                        for (int k = start; k <= end; k++) {
+                        for (int k = start; k < end; k++) {
                             availability[i][j][k] = 0;
                             // if(room.getId().equals("3"))
                             // System.out.println("availability of room " +room.getId() +"changed successfuly" +i +" " +j +" " +k +" " +availability[i][j][k]);
@@ -280,12 +280,12 @@ public class AvailabiltyOfRoom {
                 }
             }
         }
-        Class c=Registry.findClassById(id);
+       // Class c=Registry.findClassById(id);
        // c.getAssignments().setCurrentRoom(null);
        // c.getAssignments().setCurrentTime(null);
-        c.getAssignments().getSolutionClass().setRoomAndTime(null,null);
-        c.getAssignments().setRooms(new ArrayList<>(c.getRooms()));
-        c.getAssignments().setTimes(new ArrayList<>(c.getTime()));
+       // c.getAssignments().getSolutionClass().setRoomAndTime(null,null);
+        //c.getAssignments().setRooms(new ArrayList<>(c.getRooms()));
+        //c.getAssignments().setTimes(new ArrayList<>(c.getTime()));
     }
 
     public void sortClasses() {

@@ -12,8 +12,8 @@ public class Class {
     private int id;
     @XmlAttribute
     private int limit;
-    @XmlTransient
-    private Class parent;
+    @XmlAttribute
+    private int parent;
     @XmlElement(name = "room")
     private ArrayList<Room> rooms;
     @XmlElement(name = "time")
@@ -22,6 +22,10 @@ public class Class {
     @XmlTransient
     private PossibleAssignmentsOfClass assignments;
 
+    @XmlTransient
+    private Class child;
+    @XmlTransient
+    private Subpart subpart;
 
 
     public Class() {
@@ -47,11 +51,11 @@ public class Class {
         this.limit = limit;
     }
 
-    public Class getParent() {
+    public int getParent() {
         return parent;
     }
 
-    public void setParent(Class parent) {
+    public void setParent(int parent) {
         this.parent = parent;
     }
 
@@ -79,4 +83,19 @@ public class Class {
         this.assignments = assignments;
     }
 
+    public Class getChild() {
+        return child;
+    }
+
+    public void setChild(Class child) {
+        this.child = child;
+    }
+
+    public Subpart getSubpart() {
+        return subpart;
+    }
+
+    public void setSubpart(Subpart subpart) {
+        this.subpart = subpart;
+    }
 }

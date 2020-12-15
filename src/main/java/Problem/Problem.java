@@ -1,6 +1,8 @@
 package Problem;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @XmlRootElement(name ="problem")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -43,7 +45,8 @@ public class Problem {
 
     @XmlTransient
     private ArrayList<Class> classes;
-
+    @XmlTransient
+    private Set<Constraint> softConstraints= new HashSet<>();
 
     public String getName() {
         return name;
@@ -129,10 +132,20 @@ public class Problem {
                 }
             }
         }
+        for(Room room:rooms)
+        {
+            room.createRoomPenalty(classes.size());
+        }
     }
     public ArrayList<Class> getClasses() {
         return classes;
     }
+    @XmlTransient
+    public Set<Constraint> getSoftConstraints() {
+        return softConstraints;
+    }
 
-
+    public void setSoftConstraints(Set<Constraint> softConstraints) {
+        this.softConstraints = softConstraints;
+    }
 }

@@ -26,11 +26,12 @@ public class StudentService {
     public void assignStudentsToCourses()
     {
         Registry.problem.getStudents().sort(Comparator.comparing((Student student)->student.getCourses().size()));
-                                                       // .thenComparing((Course course)->course.getConfigurations().size()));
+               int i=0;                                        // .thenComparing((Course course)->course.getConfigurations().size()));
         for (Student student: Registry.problem.getStudents()
              ) {
             student.setOptions(new StudentOptions(new SolutionStudent(student.getId()),student.getId(),student.getCourses()));
             student.getOptions().enrollToCourses();
+            System.out.println(i++);
         }
     }
 }
