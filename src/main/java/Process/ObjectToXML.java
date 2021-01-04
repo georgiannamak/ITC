@@ -30,16 +30,16 @@ public class ObjectToXML {
 
     }
 
-    public ObjectToXML(Solution solution) {
+    public ObjectToXML(Solution solution,String type) {
 
         try {
             JAXBContext contextObj = JAXBContext.newInstance(Solution.class);
             Marshaller marshallerObj = contextObj.createMarshaller();
             marshallerObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshallerObj.setProperty("com.sun.xml.bind.xmlHeaders",
-                    "\n<!DOCTYPE solution PUBLIC  \"-//ITC 2019//DTD Problem Format/EN\"\n" +
-                            "\t\"http://www.itc2019.org/competition-format.dtd\">");
-            OutputStream os = new FileOutputStream( "src\\main\\resources\\" +"solution_"+solution.getName() +".xml" );
+           // marshallerObj.setProperty("com.sun.xml.bind.xmlHeaders",
+                    //"\n<!DOCTYPE solution PUBLIC  \"-//ITC 2019//DTD Problem Format/EN\"\n" +
+                          //  "\t\"http://www.itc2019.org/competition-format.dtd\">");
+            OutputStream os = new FileOutputStream( "src\\main\\resources\\" +"solution_"+solution.getName()+type +".xml" );
             marshallerObj.marshal(solution, os );
 
             //prob.print();

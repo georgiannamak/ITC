@@ -27,8 +27,10 @@ public class SolutionClass {
     @XmlTransient
     private PossibleAssignmentsOfClass assignmentsOfClass;
 
-    @XmlTransient
+    @XmlAttribute
     private int end;
+
+    public SolutionClass(){};
 
     public SolutionClass(PossibleAssignmentsOfClass assignmentsOfClass) {
         this.id = assignmentsOfClass.getId();
@@ -99,6 +101,8 @@ public class SolutionClass {
         }else return false;
         return true;
     }
+
+
 
     ////////////////////////////////////
     @XmlTransient
