@@ -4,16 +4,15 @@ import Problem.*;
 import Problem.Class;
 import Solution.SolutionClass;
 import Solution.SolutionStudent;
+//import jdk.internal.loader.AbstractClassLoaderValue;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Random;
+import java.util.*;
 
 public class StudentOptions {
     private SolutionStudent solutionStudent;
     private int id;
     private ArrayList<Course> courses;
-    private ArrayList<Class> classes;
+    private ArrayList<Integer> classes;
 
     public StudentOptions(SolutionStudent solutionStudent, int id, ArrayList<Course> courses) {
         this.solutionStudent = solutionStudent;
@@ -22,7 +21,7 @@ public class StudentOptions {
         classes=new ArrayList<>();
     }
 
-    public void enrollToCourses() {
+    /*public void enrollToCourses() {
         Random random=new Random();
         for(Course c:courses) {
 
@@ -92,15 +91,125 @@ public class StudentOptions {
 
         }
 
+    }*/
+
+    public int  enrollToCourses2() {
+        Random random=new Random();
+        for(Course course:courses)
+        {
+            Collections.shuffle(course.getConfigurations());
+            boolean enrolledToAllClasses=false;
+            int i=0;
+            while(i<course.getConfigurations().size() && !enrolledToAllClasses) {
+                Configuration configuration = course.getConfigurations().get(i);
+                if(!enrollToClassesOfConfiguration(configuration))
+                    i++;
+                else
+                    enrolledToAllClasses=true;
+            }
+            if(!enrolledToAllClasses)
+                return course.getCourse_id();
+        }
+        return -1;
     }
 
+    private boolean enrollToClassesOfConfiguration(Configuration configuration) {
+        for(Subpart subpart:configuration.getSubparts())
+        {
+            ArrayList<Class> notChecked = new ArrayList<Class>(subpart.getClasses());
+            //ArrayList<Integer> classesIds = new ArrayList<>();
+            //classes.forEach((Class c) -> classesIds.add(c.getClassId()));
+            boolean foundClass=false;
+            while(!foundClass) {
+                Class courseClass = null;
+                for (Class c : notChecked) {
+                    if (classes.contains(c.getParent())&&c.getAssignments().getSolutionClass().getStudents().size()<c.getLimit()) {
+                        courseClass = c;
+                        break;
+                    }
+                }
+                if (courseClass == null)
+                    courseClass = notChecked.stream()
+                            .filter((Class classroom) -> !isThereConflict(classroom))
+                            .filter((Class classroom) -> classroom.getAssignments().getSolutionClass().getStudents().size() < classroom.getLimit())
+                            .findAny().orElse(null);
+                if (courseClass != null) {
+                    courseClass.getAssignments().getSolutionClass().getStudents().add(solutionStudent);
+                    classes.add(courseClass.getClassId());
+                    foundClass=true;
+                } else {
+                    courseClass = notChecked.stream()
+                            .filter((Class classroom) -> classroom.getAssignments().getSolutionClass().getStudents().size() < classroom.getLimit())
+                            .findAny().orElse(null);
+                    if (courseClass != null && courseClass.getParent() == 0) {
+                        courseClass.getAssignments().getSolutionClass().getStudents().add(solutionStudent);
+                        classes.add(courseClass.getClassId());
+                        foundClass = true;
+                    }
+                }
+                if(!foundClass && courseClass!=null)
+                    notChecked.remove(courseClass);
+                else if(courseClass==null)
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    /*public boolean findAlternativeClassFromSubpart(Subpart subpart)
+    {
+        Class currentClass = classes.stream().filter(c->c.getSubpart()==subpart).findAny().orElse(null);
+        if(currentClass!=null){
+            Class courseClass=subpart.getClasses().stream().filter(c->c!=currentClass)
+                    .filter((Class classroom) -> !isThereConflict(classroom))
+                    .filter((Class classroom) -> classroom.getAssignments().getSolutionClass().getStudents().size() < classroom.getLimit())
+                    .findAny().orElse(null);
+            if (courseClass != null) {
+                courseClass.getAssignments().getSolutionClass().getStudents().add(solutionStudent);
+                classes.add(courseClass);
+                classes.remove(currentClass);
+                currentClass.getAssignments().getSolutionClass().getStudents().remove(solutionStudent);
+                return true;
+            } else {
+
+                courseClass = subpart.getClasses().stream()
+                        .filter((Class classroom) -> classroom.getAssignments().getSolutionClass().getStudents().size() < classroom.getLimit())
+                        .findAny().orElse(null);
+                if (courseClass != null && courseClass.getParent() == 0) {
+                    courseClass.getAssignments().getSolutionClass().getStudents().add(solutionStudent);
+                    classes.add(courseClass);
+                    classes.remove(currentClass);
+                    currentClass.getAssignments().getSolutionClass().getStudents().remove(solutionStudent);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }*/
    public boolean isThereConflict(Class c)
    {
-       for(Class classroom:classes)
+       for(int classroomId:classes)
        {
+           Class classroom=Registry.findClassById(classroomId);
            if(!new Constraint("SameAttendees").valideConstraintForTheseClasses(c.getAssignments().getSolutionClass(),classroom.getAssignments().getSolutionClass()))
                return true;
        }
        return false;
    }
+
+    public SolutionStudent getSolutionStudent() {
+        return solutionStudent;
+    }
+
+    public void setSolutionStudent(SolutionStudent solutionStudent) {
+        this.solutionStudent = solutionStudent;
+    }
+
+    public ArrayList<Integer> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(ArrayList<Integer> classes) {
+        this.classes = classes;
+    }
 }

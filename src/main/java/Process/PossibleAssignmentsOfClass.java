@@ -174,6 +174,8 @@ public class PossibleAssignmentsOfClass {
         else if (method.equals("ALL"))
             constraintsToCheck=new ArrayList<>(constraints);
         for (Constraint c : constraintsToCheck) {
+            //if(c.getType().contains("Max"))
+                //System.out.println("here");
             if (c.getType().contains("MaxDayLoad")) {
                 ArrayList<SolutionClass> solutionClasses = new ArrayList<>();
                 String clean = c.getType().replaceAll("\\D+", ""); //remove non-digits
@@ -199,7 +201,8 @@ public class PossibleAssignmentsOfClass {
                     }
                 }
 
-            } else if (c.getType().contains("MaxDays")) {
+            }
+            else if (c.getType().contains("MaxDays")) {
                 int sum = 0;
                 ArrayList<SolutionClass> solutionClasses = new ArrayList<>();
                 String clean = c.getType().replaceAll("\\D+", ""); //remove non-digits
@@ -222,7 +225,8 @@ public class PossibleAssignmentsOfClass {
                 }
                 if (sum > D)
                     return false;
-            } else if(c.getType().contains("MaxBlock"))
+            }
+            else if(c.getType().contains("MaxBlock"))
             {
                 ArrayList<SolutionClass> solutionClasses = new ArrayList<>();
                 int sum=0;
@@ -258,6 +262,7 @@ public class PossibleAssignmentsOfClass {
                                         Block.add(dailyClasses.get(k + 1));
                                     }
                                 }
+                                sum=0;
                                 for (SolutionClass sc : Block)
                                     sum += sc.getEnd() - sc.getStart();
 
@@ -267,7 +272,7 @@ public class PossibleAssignmentsOfClass {
                         }
                     }
                 }
-                return true;
+                //return true;
 
             }else if(c.getType().contains("MaxBreaks")){
                 ArrayList<SolutionClass> solutionClasses = new ArrayList<>();
@@ -311,7 +316,7 @@ public class PossibleAssignmentsOfClass {
                         }
                     }
                 }
-                return true;
+                //return true;
             }
             else {
                 otherClasses = new ArrayList<>(c.getClasses()); //so that it doesn't take the actual list but a copy of it
@@ -332,18 +337,9 @@ public class PossibleAssignmentsOfClass {
         Room olrCurrentRoom = currentRoom;
         if (currentRoom != null && !remove) {
             currentRoom.getAvailability().removeRoomfromClassThisTime(id, currentTime);
-            times.sort(Comparator.comparing(Time::getPenalty));
+            //times.sort(Comparator.comparing(Time::getPenalty));
             for (Time t : times) {
-                /*boolean overlapped = false;
-                if (Registry.FareTimesOverlaped(t.getWeeks(), currentTime.getWeeks())) {
-                    if (Registry.areTimesOverlaped(t.getDays(), currentTime.getDays())) {
-                        if (!(t.getEnd() < currentTime.getStart() || currentTime.getEnd() < t.getStart())) {
-                            overlapped = true;
-                        }
-                    }
-                }
-                */
-                if (/*currentRoom != null &&*/  currentRoom.getAvailability().isRoomFreeThisTime(t) && t.IsDifeerentTime(currentTime)) {// && !overlapped) {
+                if(  currentRoom.getAvailability().isRoomFreeThisTime(t) && t.IsDifeerentTime(currentTime)) {// && !overlapped) {
                     Time oldCurrent = currentTime;
                     currentRoom.getAvailability().IsAssignedTo(oldCurrent).forEach(System.out::println);
 
@@ -353,8 +349,6 @@ public class PossibleAssignmentsOfClass {
                         if (solutionClass.setRoomAndTime(currentRoom.getId(), t)) {
                             // currentRoom.getAvailability().removeRoomfromClassThisTime(id,oldCurrent);
                             System.out.println("Just changed the time to id " + id + " to " + currentTime.getDays() + " " + currentTime.getStart());
-                            //times.remove(oldCurrent);
-                            //times.set(times.size()-1,oldCurrent);
                             return true;
 
                         } else currentTime = oldCurrent;
@@ -363,35 +357,43 @@ public class PossibleAssignmentsOfClass {
 
 
             }
-            // if (currentRoom != null) {
-            //Random rand = new Random();
-               /* if(constraints.size()>0) {
-                    ArrayList<Constraint> constraintsList = new ArrayList<>(constraints);
-                    Constraint randomConstraint = constraintsList.get(rand.nextInt(constraintsList.size()));
-
-                    System.out.println("Removed everything from : " + id);
-                    for (Class c : randomConstraint.getClasses()) {
-                        if (c.getAssignments().getCurrentRoom() != null)
-                            c.getAssignments().getCurrentRoom().getAvailability().removeRoomfromClass(c.getClassId());
-                    }
-                }*/
             rooms.remove(currentRoom);
             rooms.add(rooms.size(), currentRoom);
             currentRoom.getAvailability().removeRoomfromClass(id);
             System.out.println("Removed everything from : " + id);
 
-
-            //for (Class otherClass : otherClassesEvolvedInConstraints) {
-
-            //if (otherClass.getAssignments().getCurrentRoom() != null)
-            // otherClass.getAssignments().getCurrentRoom().getAvailability().removeRoomfromClass(otherClass.getClassId());
-            //}
-            //times = new ArrayList<>(Registry.findClassById(id).getTime());
-            //rooms = new ArrayList<>(Registry.findClassById(id).getRooms());
-            //     }
         }
-        // rooms.remove(olrCurrentRoom);//new
-        //  System.out.println("Rooms size for class " +id +" is " +rooms.size());//new
+        return false;
+    }
+
+    public boolean findAlternativeTimeForCurrentRoomIncludingPenalty(boolean remove) {
+        Room olrCurrentRoom = currentRoom;
+        if (currentRoom != null && !remove) {
+            currentRoom.getAvailability().removeRoomfromClassThisTime(id, currentTime);
+            //times.sort(Comparator.comparing(Time::getPenalty));
+            for (Time t : times) {
+                if(  currentRoom.getAvailability().isRoomFreeThisTime(t) && t.IsDifeerentTime(currentTime) && t.getPenalty()<currentTime.getPenalty()) {// && !overlapped) {
+                    Time oldCurrent = currentTime;
+                    SolutionClass tempSolutionClass = new SolutionClass(id, currentRoom.getId(), t);
+                    if (checkClassforConstraints(tempSolutionClass,"REQUIRED")) {
+
+                        if (solutionClass.setRoomAndTime(currentRoom.getId(), t)) {
+                            // currentRoom.getAvailability().removeRoomfromClassThisTime(id,oldCurrent);
+                            System.out.println("Just changed the time to id " + id + " to " + currentTime.getDays() + " " + currentTime.getStart());
+                            return true;
+
+                        } else currentTime = oldCurrent;
+                    } else currentTime = oldCurrent;
+                }
+
+
+            }
+            rooms.remove(currentRoom);
+            rooms.add(rooms.size(), currentRoom);
+            currentRoom.getAvailability().removeRoomfromClass(id);
+            System.out.println("Removed everything from : " + id);
+
+        }
         return false;
     }
 
@@ -620,9 +622,8 @@ public class PossibleAssignmentsOfClass {
         this.weight = weight;
     }
 
-    public boolean fixConstraintForOtherClass() {
-        Class[] otherClasses = otherClassesEvolvedInConstraints.toArray(new Class[0]);
-        Class otherClass = otherClasses[0];
+    public boolean fixConstraintForOtherClass(Class otherClass) {
+
         if (otherClass.getAssignments().getSolutionClass().getRoomId() > 0) {
             otherClass.getAssignments().getCurrentRoom().getAvailability().removeRoomfromClass(otherClass.getClassId());
 
@@ -633,13 +634,12 @@ public class PossibleAssignmentsOfClass {
                         for (Room r2 : otherClass.getRooms()) {
                             for (Time t2 : otherClass.getTime()) {
                                 boolean flag = true;
-                                if (r2.getAvailability().isRoomFreeThisTime(t2)) {
-                                    //boolean flag=true;
-                                    for (Constraint c : constraints) {
-                                        if (!c.valideConstraintForTheseClasses(new SolutionClass(this.getId(), r.getId(), t), new SolutionClass(otherClass.getClassId(), r2.getId(), t2)))
-                                            flag = false;
-                                    }
-                                } else flag = false;
+                                if (r2.getAvailability().isRoomFreeThisTime(t2))
+                                {
+                                    if(!otherClass.getAssignments().checkClassforConstraints(new SolutionClass(otherClass.getClassId(),r2.getId(),t2),"REQUIRED"))
+                                        flag = false;
+                                }
+                                else flag = false;
                                 if (flag) {
                                     otherClass.getAssignments().getSolutionClass().setRoomAndTime(r2.getId(), t2);
                                     System.out.println("You did it");
@@ -682,7 +682,7 @@ public class PossibleAssignmentsOfClass {
        // Time oldCurrentTime = currentTime;
         if (currentRoom != null && !remove) {
             currentRoom.getAvailability().removeRoomfromClassThisTime(id, currentTime);
-            rooms.sort(Comparator.comparing((Room r)->r.getRoomPenaltyForClass(id)));
+            //rooms.sort(Comparator.comparing((Room r)->r.getRoomPenaltyForClass(id)));
             for (Room room : rooms) {
 
                 if (/*currentRoom != null &&*/  room.getAvailability().isRoomFreeThisTime(currentTime) && room!=currentRoom) {// && !overlapped) {
@@ -708,12 +708,42 @@ public class PossibleAssignmentsOfClass {
 
             }
 
-            /*times.remove(currentRoom);
-            rooms.add(rooms.size(), currentRoom);*/
+            rooms.remove(currentRoom);
+            rooms.add(rooms.size(), currentRoom);
             currentRoom.getAvailability().removeRoomfromClass(id);
             System.out.println("Removed everything from : " + id);
 
 
+        }
+        return false;
+    }
+
+
+    public boolean findAlternativeRoomForCurrentTimeIncludingPenalty(boolean remove) {
+
+        // Time oldCurrentTime = currentTime;
+        if (currentRoom != null && !remove) {
+            currentRoom.getAvailability().removeRoomfromClassThisTime(id, currentTime);
+            rooms.sort(Comparator.comparing((Room r)->r.getRoomPenaltyForClass(id)));
+            for (Room room : rooms) {
+
+                if (room.getAvailability().isRoomFreeThisTime(currentTime) && room!=currentRoom && room.getRoomPenaltyForClass(id)<currentRoom.getRoomPenaltyForClass(id)) {
+                    Room oldCurrent = currentRoom;
+                    //currentRoom.getAvailability().IsAssignedTo(oldCurrent).forEach(System.out::println);
+
+                    SolutionClass tempSolutionClass = new SolutionClass(id, room.getId(), currentTime);
+                    if (checkClassforConstraints(tempSolutionClass,"REQUIRED")) {
+
+                        if (solutionClass.setRoomAndTime(room.getId(), currentTime)) {
+                            System.out.println("Just changed the room to id " + id + " to " + currentRoom.getId());
+                            return true;
+
+                        } else currentRoom = oldCurrent;
+                    } else currentRoom = oldCurrent;
+                }
+            }
+            currentRoom.getAvailability().removeRoomfromClass(id);
+            System.out.println("Removed everything from : " + id);
         }
         return false;
     }
@@ -730,13 +760,12 @@ public class PossibleAssignmentsOfClass {
         int sum=0;
         for(Constraint constraint:softConstraints)
         {
-            if(!constraint.isValid())
-                sum+=constraint.getPenalty();
+            int violatedPairs=constraint.violatedPairs();
+            if(violatedPairs!=0)
+                sum+=(constraint.getPenalty()*violatedPairs);
         }
         return sum;
     }
 
-    public void findAlternativeRoomForCurrentTimeIncludingPenalty() {
-    }
 }
 

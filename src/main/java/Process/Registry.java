@@ -9,6 +9,7 @@ import Problem.Subpart;
 import Problem.Configuration;
 import Solution.Solution;
 import Solution.SolutionClass;
+import Problem.Student;
 import Problem.Time;
 import com.sun.xml.bind.v2.runtime.reflect.opt.Const;
 
@@ -25,372 +26,340 @@ public class Registry {
     public static int bestPenalty=Integer.MAX_VALUE;
 
     public static void main(String[] args) {
+
         int n = 0;
         //ObjectToXML xml2;
 
-            System.out.println("n= " + n);
-            obj = new XMLToObject();
-            problem = obj.getProblem();
-            problem.findAllClasses();
+        System.out.println("n= " + n);
+        obj = new XMLToObject();
+        problem = obj.getProblem();
+        System.out.println("problem = " + problem.getName());
+        problem.findAllClasses();
 
-            solution = new Solution(problem.getName());
-            //ObjectToXML xml4 = new ObjectToXML(problem);
-            createAvailabilitiesOfRooms();
-            connectRoomsWithRoomsAvailableForClass();
-            findChildClass();
-            //problem.getClasses().get(0).getRooms().get(0).getAvailability().printAvailability();
-            createClassPossibleAssignments();
-            handleConstraints();
-            findClassesForRooms();
+        solution = new Solution(problem.getName());
+        //ObjectToXML xml4 = new ObjectToXML(problem);
+        createAvailabilitiesOfRooms();
+        connectRoomsWithRoomsAvailableForClass();
+        findChildClass();
+        //problem.getClasses().get(0).getRooms().get(0).getAvailability().printAvailability();
+        createClassPossibleAssignments();
+        handleConstraints();
+        findClassesForRooms();
 
-            problem.getClasses().sort(Comparator.comparing((Class c) -> c.getAssignments().getRooms().size() * c.getAssignments().getTimes().size())
-                    .thenComparing((Class c) -> c.getAssignments().getRequiredConstraints().size()).reversed()
-                    .thenComparing((Class c) -> c.getAssignments().getOtherClassesEvolvedInConstraints().size()).reversed());
+        problem.getClasses().sort(Comparator.comparing((Class c) -> c.getAssignments().getRooms().size() * c.getAssignments().getTimes().size())
+                .thenComparing((Class c) -> c.getAssignments().getRequiredConstraints().size()).reversed()
+                .thenComparing((Class c) -> c.getAssignments().getOtherClassesEvolvedInConstraints().size()).reversed());
+        //problem.getClasses().sort(Comparator.comparing((Class c) -> c.getAssignments().getWeight()));
+        for (Class c : problem.getClasses())
+            c.getAssignments().setWeight(problem.getClasses().indexOf(c));
+        problem.getClasses().sort(Comparator.comparing((Class c) -> c.getAssignments().getWeight()));
+
+        Class c = new Class();
+        int i = 0, errorIndex = 0;
+        int j = 0;
+        while (penalty > 0) {
+
+            boolean flag = false;
+            System.out.println("New Try!");
             //problem.getClasses().sort(Comparator.comparing((Class c) -> c.getAssignments().getWeight()));
-            for (Class c : problem.getClasses())
-                c.getAssignments().setWeight(problem.getClasses().indexOf(c));
-            problem.getClasses().sort(Comparator.comparing((Class c) -> c.getAssignments().getWeight()));
 
-           Class c = new Class();
-            int i = 0, errorIndex = 0;
-            int j = 0;
-            while (penalty > 0) {
+            //Class c = new Class();
+            //int i = 0, errorIndex = 0;
+            //int j = 0;
 
-                boolean flag = false;
-               System.out.println("New Try!");
-                //problem.getClasses().sort(Comparator.comparing((Class c) -> c.getAssignments().getWeight()));
+            while (i < problem.getClasses().size()) {
+                c = problem.getClasses().get(i);
+                System.out.println("Handling classId " + c.getClassId() +" at "+(i+1));
+                // if (c.getRooms().size() > 0 && c.getAssignments().getSolutionClass().getRoomId()<=0)  {
+                if (!c.getAssignments().AssignBestPossibleRoomAndTime2()) {
+                    List<Class> otherClasses = c.getAssignments().getOtherClassesEvolvedInConstraints().stream().
+                            filter((Class c2) -> c2.getAssignments().getSolutionClass().getStart() > 0)
+                            .collect(Collectors.toList());
 
-                //Class c = new Class();
-                //int i = 0, errorIndex = 0;
-                //int j = 0;
-
-                while (i < problem.getClasses().size()) {
-                    c = problem.getClasses().get(i);
-                    System.out.println("Handling classId " + c.getClassId());
-                    // if (c.getRooms().size() > 0 && c.getAssignments().getSolutionClass().getRoomId()<=0)  {
-                    if (!c.getAssignments().AssignBestPossibleRoomAndTime2()) {
-                        List<Class> otherClasses = c.getAssignments().getOtherClassesEvolvedInConstraints().stream().
-                                filter((Class c2) -> c2.getAssignments().getSolutionClass().getStart() > 0)
-                                .collect(Collectors.toList());
-
-                        if (c.getRooms().size() > 0) {
-                            if (otherClasses.size() == 0) {
+                    if (c.getRooms().size() > 0) {
+                        if (otherClasses.size() == 0) {
+                            System.out.println("Exiting ");
+                            j = 0;
+                            errorIndex = i;
+                            i = problem.getClasses().size();
+                        } else if (otherClasses.size() == 1) {
+                            // if(c.getClassId()==261 || c.getClassId()==718)
+                            //System.out.println("");
+                            if (!c.getAssignments().fixConstraintForOtherClass(otherClasses.get(0))) {
                                 System.out.println("Exiting ");
                                 j = 0;
                                 errorIndex = i;
                                 i = problem.getClasses().size();
-                            } else if (otherClasses.size() == 1) {
-                                if (!c.getAssignments().fixConstraintForOtherClass()) {
-                                    System.out.println("Exiting ");
-                                    j = 0;
-                                    errorIndex = i;
-                                    i = problem.getClasses().size();
-                                    for (Class otherClass : otherClasses)
-                                        otherClass.getAssignments().setWeight(problem.getClasses().get(0).getAssignments().getWeight() - 1);//ta vazw prwta gia na meinoun anephrreasta apo ta alla
-                                } else i++;
-                            } else {
-                                Random rand = new Random();
-                                Class otherClass = otherClasses.get(rand.nextInt(otherClasses.size()));
-                                //for (Class otherClass : OtherClasses) {
-                                if (j >= otherClass.getTime().size())
-                                    flag = true;
-                                if(otherClass.getAssignments().getTimes().size()==1)
-                                {
-                                    if(!otherClass.getAssignments().findAlternativeRoomForCurrentTime(flag))
-                                    {
-                                        System.out.println("Exiting ");
-                                        j = 0;
-                                        errorIndex = i;
-                                        i = problem.getClasses().size();
-                                        break;
-                                    }
-                                }else if (!otherClass.getAssignments().findAlternativeTimeForCurrentRoom(flag)) {// || j==otherClass.getTime().size()) {
-
+                                for (Class otherClass : otherClasses)
+                                    otherClass.getAssignments().setWeight(problem.getClasses().get(0).getAssignments().getWeight() - 1);//ta vazw prwta gia na meinoun anephrreasta apo ta alla
+                            } else i++;
+                        } else {
+                            Random rand = new Random();
+                            Class otherClass = otherClasses.get(rand.nextInt(otherClasses.size()));
+                            int p = new Random().nextInt(100);
+                            //for (Class otherClass : OtherClasses) {
+                            if (j >= 7 || j >= otherClass.getTime().size())
+                                flag = true;
+                            if (otherClass.getAssignments().getTimes().size() == 1 || (p < 30 && otherClass.getAssignments().getRooms().size() > 1)) {
+                                if (!otherClass.getAssignments().findAlternativeRoomForCurrentTime(flag)) {
                                     System.out.println("Exiting ");
                                     j = 0;
                                     errorIndex = i;
                                     i = problem.getClasses().size();
                                     break;
                                 }
+                            } else if (!otherClass.getAssignments().findAlternativeTimeForCurrentRoom(flag)) {// || j==otherClass.getTime().size()) {
 
-                                //}
+                                System.out.println("Exiting ");
+                                j = 0;
+                                errorIndex = i;
+                                i = problem.getClasses().size();
+                                break;
                             }
 
-
-                            j++;
-                            System.out.println(j);
-                        } else {
-                            System.out.println("Exiting ");
-                            j = 0;
-                            errorIndex = i;
-                            i = problem.getClasses().size();
-                            break;
+                            //}
                         }
+
+
+                        j++;
+                        System.out.println(j);
                     } else {
-                        if(c.getRooms().size()>0)
-                            System.out.println("Sucess classId=" + c.getClassId() +" RoomPenalty=" +c.getAssignments().getCurrentRoom().getRoomPenaltyForClass(c.getClassId())+" TimePenalty=" +c.getAssignments().getCurrentTime().getPenalty());
-                        else
-                            System.out.println("Sucess classId=" + c.getClassId() +" TimePenalty=" +c.getAssignments().getCurrentTime().getPenalty());
+                        System.out.println("Exiting ");
                         j = 0;
-                        i++;
+                        errorIndex = i;
+                        i = problem.getClasses().size();
+                        break;
                     }
-
-                    //}
-                    // else i++;
-
-                }
-                calculatePenalty();
-                if(c.equals(problem.getClasses().get(problem.getClasses().size()-1)) && penalty>0)
-                {
-                    for(SolutionClass sc:classesWithoutRoom) {
-                        if (!sc.getAssignmentsOfClass().AssignBestPossibleRoomAndTime2())
-                            errorIndex = problem.getClasses().indexOf(findClassById(sc.getId()));
-                    }
-                    calculatePenalty();
-                }
-                if (penalty > 0) {
-                    // ObjectToXML sol= new ObjectToXML(solution);
-
-                    //System.out.println(index);
-                    c=problem.getClasses().get(errorIndex);
-                    int minIndex = findOtherClassesMinIndex(c);
-                    Random random = new Random();
-                    int p = random.nextInt(100);
-
-                    if (minIndex < errorIndex && p > 30) {
-                        System.out.println("p=" + p + " min=" + problem.getClasses().get(minIndex).getClassId() +" minIndex=" +minIndex);
-                        c.getAssignments().setWeight(problem.getClasses().get(minIndex).getAssignments().getWeight());
-                        for (int k = minIndex; k < errorIndex; k++)
-                            problem.getClasses().get(k).getAssignments().setWeight(problem.getClasses().get(k).getAssignments().getWeight() + 1);
-                    } else {
-                        System.out.println("p=" + p + " min=" + problem.getClasses().get(0).getClassId() +" minIndex=" +minIndex);
-                        c.getAssignments().setWeight(problem.getClasses().get(0).getAssignments().getWeight() - 1);
-                    }
-
-                    problem.getClasses().sort(Comparator.comparing((Class problemClass) -> problemClass.getAssignments().getWeight()));
-                    int newIndex=problem.getClasses().indexOf(c);
-                    for (int q=newIndex ; q<problem.getClasses().size(); q++) {
-                        SolutionClass sc=problem.getClasses().get(q).getAssignments().getSolutionClass();
-                        if (sc.getRoomId() > 0)
-                            sc.getAssignmentsOfClass().getCurrentRoom().getAvailability().removeRoomfromClass(sc.getId());
-                        else if(sc.getRoomId()==-5) {
-                            sc.getAssignmentsOfClass().setCurrentTime(null);
-                            sc.getAssignmentsOfClass().getSolutionClass().setStart(0);
-                            sc.getAssignmentsOfClass().getSolutionClass().setWeeks(null);
-                            sc.getAssignmentsOfClass().getSolutionClass().setDays(null);
-                        }
-                        //sc.getAssignmentsOfClass().getCurrentRoom()
-                    }
-                     i = newIndex;
-                    errorIndex = 0;
+                } else {
+                    if (c.getRooms().size() > 0)
+                        System.out.println("Sucess classId=" + c.getClassId() + " RoomPenalty=" + c.getAssignments().getCurrentRoom().getRoomPenaltyForClass(c.getClassId()) + " TimePenalty=" + c.getAssignments().getCurrentTime().getPenalty());
+                    else
+                        System.out.println("Sucess classId=" + c.getClassId() + " TimePenalty=" + c.getAssignments().getCurrentTime().getPenalty());
                     j = 0;
+                    i++;
                 }
 
-                //PHASE 2
-
+                //}
+                // else i++;
 
             }
+            calculatePenalty();
+            if (c.equals(problem.getClasses().get(problem.getClasses().size() - 1)) && penalty > 0) {
+                for (SolutionClass sc : classesWithoutRoom) {
+                    if (!sc.getAssignmentsOfClass().AssignBestPossibleRoomAndTime2())
+                        errorIndex = problem.getClasses().indexOf(findClassById(sc.getId()));
+                }
+                calculatePenalty();
+            }
+            if (penalty > 0) {
+                // ObjectToXML sol= new ObjectToXML(solution);
+
+                //System.out.println(index);
+                c = problem.getClasses().get(errorIndex);
+                int minIndex = findOtherClassesMinIndex(c);
+                Random random = new Random();
+                int p = random.nextInt(100);
+
+                if (minIndex < errorIndex && p > 30) {
+                    System.out.println("p=" + p + " min=" + problem.getClasses().get(minIndex).getClassId() + " minIndex=" + minIndex);
+                    c.getAssignments().setWeight(problem.getClasses().get(minIndex).getAssignments().getWeight());
+                    for (int k = minIndex; k < errorIndex; k++)
+                        problem.getClasses().get(k).getAssignments().setWeight(problem.getClasses().get(k).getAssignments().getWeight() + 1);
+                } else {
+                    System.out.println("p=" + p + " min=" + problem.getClasses().get(0).getClassId() + " minIndex=" + minIndex);
+                    c.getAssignments().setWeight(problem.getClasses().get(0).getAssignments().getWeight() - 1);
+                }
+
+                problem.getClasses().sort(Comparator.comparing((Class problemClass) -> problemClass.getAssignments().getWeight()));
+                int newIndex = problem.getClasses().indexOf(c);
+                for (int q = newIndex; q < problem.getClasses().size(); q++) {
+                    SolutionClass sc = problem.getClasses().get(q).getAssignments().getSolutionClass();
+                    if (sc.getRoomId() > 0)
+                        sc.getAssignmentsOfClass().getCurrentRoom().getAvailability().removeRoomfromClass(sc.getId());
+                    else if (sc.getRoomId() == -5) {
+                        sc.getAssignmentsOfClass().setCurrentTime(null);
+                        sc.getAssignmentsOfClass().getSolutionClass().setStart(0);
+                        sc.getAssignmentsOfClass().getSolutionClass().setWeeks(null);
+                        sc.getAssignmentsOfClass().getSolutionClass().setDays(null);
+                    }
+                    //sc.getAssignmentsOfClass().getCurrentRoom()
+                }
+                i = newIndex;
+                errorIndex = 0;
+                j = 0;
+            }
+
+        }
+
 
         //PHASE 2
+        int sum=0;
         for(Constraint constraint:problem.getSoftConstraints())
         {
-            if(!constraint.isValid())
+            int violatedPairs=constraint.violatedPairs();
+            if(violatedPairs!=0) {
                 constraint.setRespected(false);
+                sum+=(constraint.getPenalty()*problem.getOptimization().getDistribution()*violatedPairs);
+            }
         }
+
         List<SolutionClass> bestSolutionCLasses =bestSolution.getClasses().stream().
                 sorted(Comparator.comparing(sc->sc.getAssignmentsOfClass().getSoftConstraints().size())).
                 collect(Collectors.toList());
+        System.out.println("Dist Penalty= " +sum);
         for(SolutionClass sc:bestSolutionCLasses)
         {
-            int k=0;
-            Time oldCurrentTime;
-            Room oldCurrentRoom;
-            int currentRoomPenalty=0;
-            boolean flag=true;
-            while(flag && k<Integer.max(sc.getAssignmentsOfClass().getRooms().size(),sc.getAssignmentsOfClass().getTimes().size())) {
-                oldCurrentTime = sc.getAssignmentsOfClass().getCurrentTime();
-                oldCurrentRoom = sc.getAssignmentsOfClass().getCurrentRoom();
-                int currentDistributionPenalty = sc.getAssignmentsOfClass().calculateDistributionPenalty() * problem.getOptimization().getDistribution();
+            sum+=sc.getAssignmentsOfClass().getCurrentTime().getPenalty()*problem.getOptimization().getTime();
+            if(sc.getRoomId()!=-5)
+                sum+=sc.getAssignmentsOfClass().getCurrentRoom().getRoomPenaltyForClass(sc.getId())*problem.getOptimization().getRoom();
+        }
+        System.out.println("Final Penalty = " +sum );
 
-                int currentTimePenalty = oldCurrentTime.getPenalty() * problem.getOptimization().getTime();
-                if(oldCurrentRoom!=null)
-                    currentRoomPenalty = oldCurrentRoom.getRoomPenaltyForClass(sc.getId()) * problem.getOptimization().getRoom();
-                System.out.println("current Time + Room + Dist =" +currentTimePenalty +" " +currentRoomPenalty +" " +currentDistributionPenalty +" for id= " +sc.getId());
-                if (currentTimePenalty == 0 && currentRoomPenalty == 0 && currentDistributionPenalty == 0)
-                    flag=false;
-                else{
-                    if (currentTimePenalty < currentRoomPenalty &&oldCurrentRoom!=null) {
+        int times=0;
+        int currentSum=0;
+        int oldSum=sum;
+        while(times<10 && currentSum<oldSum) {
+            if(times!=0) {
+                oldSum = currentSum;
+                for (SolutionClass sc : bestSolution.getClasses()) {
+                    if (sc.getRoomId() == -5)
+                        sc.setRoomId(null);
+                }
+                ObjectToXML xml = new ObjectToXML(bestSolution,"_SWO");
+                for (SolutionClass sc : bestSolution.getClasses()) {
+                    if (sc.getRoomId() == null)
+                        sc.setRoomId(-5);
+                }
+                currentSum = 0;
+            }
+            System.out.println("tines="+times);
+            for (SolutionClass sc : bestSolutionCLasses) {
+                int k = 0;
+                Time oldCurrentTime;
+                Room oldCurrentRoom;
+                int currentRoomPenalty = 0;
+                boolean flag = true;
+                while (flag && k < Integer.max(sc.getAssignmentsOfClass().getRooms().size(), sc.getAssignmentsOfClass().getTimes().size())) {
+                    oldCurrentTime = sc.getAssignmentsOfClass().getCurrentTime();
+                    oldCurrentRoom = sc.getAssignmentsOfClass().getCurrentRoom();
+                    int currentDistributionPenalty = sc.getAssignmentsOfClass().calculateDistributionPenalty() * problem.getOptimization().getDistribution();
 
-                        if (!sc.getAssignmentsOfClass().findAlternativeRoomForCurrentTime(false)) {
-                            sc.setRoomAndTime(oldCurrentRoom.getId(), oldCurrentTime);
-                            if (!sc.getAssignmentsOfClass().findAlternativeTimeForCurrentRoom(false))
-                                flag = false;
-                        }
+                    int currentTimePenalty = oldCurrentTime.getPenalty() * problem.getOptimization().getTime();
+                    if (oldCurrentRoom != null)
+                        currentRoomPenalty = oldCurrentRoom.getRoomPenaltyForClass(sc.getId()) * problem.getOptimization().getRoom();
+                    System.out.println("current Time + Room + Dist =" + currentTimePenalty + " " + currentRoomPenalty + " " + currentDistributionPenalty + " for id= " + sc.getId());
+                    if (currentTimePenalty == 0 && currentRoomPenalty == 0 && currentDistributionPenalty == 0)
+                        flag = false;
+                    else {
+                        if (currentTimePenalty < currentRoomPenalty && oldCurrentRoom != null) {
 
-                    } else  {
-                        if (!sc.getAssignmentsOfClass().findAlternativeTimeForCurrentRoom(false)) {
-                            if(oldCurrentRoom!=null) {
+                            if (!sc.getAssignmentsOfClass().findAlternativeRoomForCurrentTime(false)) {
                                 sc.setRoomAndTime(oldCurrentRoom.getId(), oldCurrentTime);
-                                if (!sc.getAssignmentsOfClass().findAlternativeRoomForCurrentTime(false))
+                                if (!sc.getAssignmentsOfClass().findAlternativeTimeForCurrentRoom(false))
                                     flag = false;
                             }
-                            else {
-                                sc.setDays(oldCurrentTime.getDays());
-                                sc.setWeeks(oldCurrentTime.getWeeks());
-                                sc.setStart(oldCurrentTime.getStart());
-                                sc.setEnd(oldCurrentTime.getEnd());
-                                flag = false;
+
+                        } else {
+                            if (!sc.getAssignmentsOfClass().findAlternativeTimeForCurrentRoom(false)) {
+                                if (oldCurrentRoom != null) {
+                                    sc.setRoomAndTime(oldCurrentRoom.getId(), oldCurrentTime);
+                                    if (!sc.getAssignmentsOfClass().findAlternativeRoomForCurrentTime(false))
+                                        flag = false;
+                                } else {
+                                    sc.setDays(oldCurrentTime.getDays());
+                                    sc.setWeeks(oldCurrentTime.getWeeks());
+                                    sc.setStart(oldCurrentTime.getStart());
+                                    sc.setEnd(oldCurrentTime.getEnd());
+                                    flag = false;
+                                }
+
                             }
-
                         }
-                    }
-                    int newTineRoomPenalty;
-                    if (flag) {
-                        int newDistPenalty = 0;
-                        for (Constraint constraint : sc.getAssignmentsOfClass().getSoftConstraints()) {
-                            if (!constraint.isValid())
-                                newDistPenalty += constraint.getPenalty();
+                        int newTineRoomPenalty;
+                        if (flag) {
+                            int newDistPenalty = 0;
+                            for (Constraint constraint : sc.getAssignmentsOfClass().getSoftConstraints()) {
+                                int violatedPairs=constraint.violatedPairs();
+                                if (violatedPairs!=0)
+                                    newDistPenalty += constraint.getPenalty()*violatedPairs;
+                            }
+                            if (sc.getAssignmentsOfClass().getCurrentRoom() != null)
+                                newTineRoomPenalty = sc.getAssignmentsOfClass().getCurrentTime().getPenalty() * problem.getOptimization().getTime() + sc.getAssignmentsOfClass().getCurrentRoom().getRoomPenaltyForClass(sc.getId()) * problem.getOptimization().getRoom();
+                            else
+                                newTineRoomPenalty = sc.getAssignmentsOfClass().getCurrentTime().getPenalty() * problem.getOptimization().getTime();
+                            int p = new Random().nextInt(100);
+                            if (newDistPenalty * problem.getOptimization().getDistribution() + newTineRoomPenalty >= currentDistributionPenalty + currentRoomPenalty + currentTimePenalty && p <= 70)
+                                flag = false;
+                            System.out.println("p=" + p + " current dist=" + currentDistributionPenalty + " currentRoom= " + currentRoomPenalty + " currentTime= " + currentTimePenalty + " new dist= " + newDistPenalty * problem.getOptimization().getDistribution() + " newTimeAndRoompen= " + newTineRoomPenalty);
+                            if (flag)
+                                System.out.println("You saved " + (currentDistributionPenalty + currentRoomPenalty + currentTimePenalty - newDistPenalty* problem.getOptimization().getDistribution() + newTineRoomPenalty));
                         }
-                        if(sc.getAssignmentsOfClass().getCurrentRoom()!=null)
-                            newTineRoomPenalty = sc.getAssignmentsOfClass().getCurrentTime().getPenalty() * problem.getOptimization().getTime() + sc.getAssignmentsOfClass().getCurrentRoom().getRoomPenaltyForClass(sc.getId()) * problem.getOptimization().getRoom();
-                        else
-                            newTineRoomPenalty=sc.getAssignmentsOfClass().getCurrentTime().getPenalty() * problem.getOptimization().getTime();
-                        int p=new Random().nextInt(100);
-                        if (newDistPenalty * problem.getOptimization().getDistribution() + newTineRoomPenalty >= currentDistributionPenalty + currentRoomPenalty + currentTimePenalty &&p<=70)
-                            flag = false;
-                        System.out.println("p=" +p +" current dist=" +currentDistributionPenalty +" currentRoom= " +currentRoomPenalty +" currentTime= " +currentTimePenalty +" new dist= " +newDistPenalty* problem.getOptimization().getDistribution() +" newTimeAndRoompen= " +newTineRoomPenalty);
-                        if (flag)
-                            System.out.println("You saved " + (currentDistributionPenalty + currentRoomPenalty + currentTimePenalty - newDistPenalty + newTineRoomPenalty));
-                    }
-                    k++;
-                    if (!flag && oldCurrentRoom!=null)
-                        sc.setRoomAndTime(oldCurrentRoom.getId(), oldCurrentTime);
-                    else if(oldCurrentRoom==null) {
-                        sc.setDays(oldCurrentTime.getDays());
-                        sc.setWeeks(oldCurrentTime.getWeeks());
-                        sc.setStart(oldCurrentTime.getStart());
-                        sc.setEnd(oldCurrentTime.getEnd());
+                        k++;
+                        if (!flag && oldCurrentRoom != null)
+                            sc.setRoomAndTime(oldCurrentRoom.getId(), oldCurrentTime);
+                        else if (oldCurrentRoom == null) {
+                            sc.setDays(oldCurrentTime.getDays());
+                            sc.setWeeks(oldCurrentTime.getWeeks());
+                            sc.setStart(oldCurrentTime.getStart());
+                            sc.setEnd(oldCurrentTime.getEnd());
+                        }
                     }
                 }
             }
-        }
-        for(SolutionClass sc:bestSolution.getClasses())
-        {
-            if(sc.getRoomId()==-5)
-                sc.setRoomId(null);
-        }
-        ObjectToXML xml2 = new ObjectToXML(solution);
-        for(SolutionClass sc:bestSolution.getClasses())
-        {
-            if(sc.getRoomId()==null)
-                sc.setRoomId(-5);
-        }
-
-        //ObjectToXML xml2;
-        //-----------------------------------------//
-        /*int k = 0;
-            assignRandomRoomToClasses2();
-            calculatePenalty();
-            for(Class c:problem.getClasses())
+            for(Constraint constraint:problem.getSoftConstraints())
             {
-                c.getAssignments().setRooms(findClassById(c.getClassId()).getRooms());
-                c.getAssignments().setTimes(findClassById(c.getClassId()).getTime());
-            }
-           while (k <2 && penalty > 0) {
-               System.out.println("k= " + k);
-               //handleHardConstraints();
-
-               handleClassesWithoutRoom();
-               calculatePenalty();
-
-               assignBestPossibleRoomToClasses();
-               calculatePenalty();
-
-              // assignClassToRooms();
-              //  calculatePenalty();
-
-              // handleClassesWithHardConstraints();
-             //  calculatePenalty();
-
-               // randomUnassign();
-               //calculatePenalty();
-
-
-
-                k++;
-            }
-           n++;
-        }*/
-        //-----------------------//
-        //PHASE2
-        // n=0;
-           /* solution = bestSolution;
-            problem = bestProblem;
-            classesWithoutRoom = bestClassesWithoutRoom;
-            for (SolutionClass sc : classesWithoutRoom) {
-                sc.getAssignmentsOfClass().setWeight(Integer.MIN_VALUE);
-                // System.out.println(sc.getId());
-                for (Class otherClass : sc.getAssignmentsOfClass().getOtherClassesEvolvedInConstraints()) {
-                    if (otherClass.getAssignments().getCurrentRoom() != null)
-                        otherClass.getAssignments().getCurrentRoom().getAvailability().removeRoomfromClass(otherClass.getClassId());
+                int violatedPairs=constraint.violatedPairs();
+                if(violatedPairs!=0) {
+                    constraint.setRespected(false);
+                    currentSum+=(constraint.getPenalty()*problem.getOptimization().getDistribution()*violatedPairs);
                 }
             }
-            System.out.println("Starting Phase 2");
-            calculatePenalty();
-            int k = 0;
-            while (k < 5 && penalty > 0) {
-                System.out.println("k= " + k);
-                //handleClassesWithoutRoom();
-                //calculatePenalty();
+            System.out.println("Dist Penalty= " +currentSum);
+            for(Class c1:problem.getClasses())
+            {
+                currentSum+=c1.getAssignments().getCurrentTime().getPenalty()*problem.getOptimization().getTime();
+                if(c1.getAssignments().getCurrentRoom()!=null)
+                    currentSum+=c1.getAssignments().getCurrentRoom().getRoomPenaltyForClass(c1.getClassId())*problem.getOptimization().getRoom();
+            }
+            System.out.println("Final Penalty = " +currentSum );
+            times++;
 
-                assignBestPossibleRoomToClasses();
-                calculatePenalty();
+        }
+        if(times==10) {
+            for (SolutionClass sc : bestSolution.getClasses()) {
+                if (sc.getRoomId() == -5)
+                    sc.setRoomId(null);
+            }
+             ObjectToXML xml2 = new ObjectToXML(solution,"_Final");
+            for (SolutionClass sc : bestSolution.getClasses()) {
+                if (sc.getRoomId() == null)
+                    sc.setRoomId(-5);
+            }
+        }
+        else
+        {
+            XMLToObject obj= new XMLToObject("solution_"+problem.getName()+"_SWO.xml");
+            Solution bestSolutionFound=obj.getSolution();
+            for(SolutionClass solutionClass:bestSolutionCLasses)
+            {
+                for(SolutionClass solutionClassofNew:bestSolutionFound.getClasses()){
+                    if(solutionClass.getId()==solutionClassofNew.getId())
+                    {
+                        solutionClass.setRoomId(solutionClassofNew.getRoomId());
+                        solutionClass.setStart(solutionClassofNew.getStart());
+                        solutionClass.setDays(solutionClassofNew.getDays());
+                        solutionClass.setWeeks(solutionClassofNew.getWeeks());
+                        solutionClass.setEnd(solutionClassofNew.getEnd());
+                    }
+                }
+            }
+        }
 
-                assignClassToRooms();
-                calculatePenalty();
-
-                handleClassesWithHardConstraints();
-                calculatePenalty();
-
-                randomUnassign();
-                calculatePenalty();
-
-                k++;
-            }*/
-        /*int i=0;
-        for(SolutionClass sc:bestSolution.getClasses()) {
-
-            if (sc.getRoomId() == -5) {
-
-                sc.getAssignmentsOfClass().setCurrentTime(sc.getAssignmentsOfClass().getTimes().stream()
-                        .filter(t -> sc.getAssignmentsOfClass().checkClassforConstraints(new SolutionClass(sc.getId(), -5, t))).findAny().orElse(null));
-                if (sc.getAssignmentsOfClass().getCurrentTime() != null) {
-                    sc.setDays(sc.getAssignmentsOfClass().getCurrentTime().getDays());
-                    sc.setWeeks(sc.getAssignmentsOfClass().getCurrentTime().getWeeks());
-                    sc.setStart(sc.getAssignmentsOfClass().getCurrentTime().getStart());
-                    System.out.println("done with " + i + "/85");
-
-                } //else
-                    // {
-                    //  for(Class otherClass  :sc.getAssignmentsOfClass().getOtherClassesEvolvedInConstraints() ) {
-
-                    //  if (otherClass.getAssignments().getCurrentRoom() != null)
-                    //   otherClass.getAssignments().getCurrentRoom().getAvailability().removeRoomfromClass(otherClass.getClassId());
-                    // }
-                    // }
-                sc.setRoomId(null);
-               // System.out.println("done with " + i + "/85");
-                i++;
-            }*/
-        //}
-            //for(SolutionClass sc:bestSolution.getClasses())
-                //sc.setRoomId(null);
-            //ObjectToXML xml=new ObjectToXML(bestSolution);
-
-        StudentService studentService = new StudentService();
+        StudentService studentService = new StudentService(Registry.getProblem().getStudents());
         studentService.connectStudentCoursesWithProblemCourses();
         studentService.assignStudentsToCourses();
-        ObjectToXML xml= new ObjectToXML(bestSolution);
+
+        ObjectToXML xml = new ObjectToXML(solution,"_Final");
     }
 
     private static void findChildClass() {
@@ -557,7 +526,7 @@ public class Registry {
                 if(sc.getRoomId()==-5)
                     sc.setRoomId(null);
             }
-            ObjectToXML xml2 = new ObjectToXML(solution);
+            ObjectToXML xml2 = new ObjectToXML(solution,"_SWO");
             for(SolutionClass sc:bestSolution.getClasses())
             {
                 if(sc.getRoomId()==null)
@@ -616,6 +585,19 @@ public class Registry {
 
         }return null;*/
     }
+
+    public static Course findCourseById(int Id)
+    {
+
+        return problem.getCourses().stream().filter(c -> c.getCourse_id() == Id).findFirst().orElse(null);
+        // return matchningClass.
+       /* for (Class c:problem.getClasses()) {
+            if (c.getClassId() == Id)
+                return c;
+
+        }return null;*/
+    }
+
 
     public static Course findCoursebyId(int Id)
     {

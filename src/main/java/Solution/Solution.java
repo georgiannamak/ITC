@@ -27,6 +27,8 @@ public class Solution {
 
     @XmlElement(name="class")
     private Set<SolutionClass> classes;
+   // @XmlTransient
+   // private ArrayList<SolutionStudent> solutionStudents;
 
     public Solution(String name){
         this.name=name;
@@ -35,6 +37,7 @@ public class Solution {
         institurion="Uom";
         country="Greece";
         classes= new HashSet<SolutionClass>();
+        //solutionStudents=new ArrayList<>();
     }
 
     public Solution() {
@@ -77,4 +80,6 @@ public class Solution {
     public String getCountry() {
         return country;
     }
+
+
 }

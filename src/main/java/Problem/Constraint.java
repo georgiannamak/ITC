@@ -63,13 +63,92 @@ public class Constraint {
             types[1]=types[1].replaceAll("\\D+", "");
             int M=Integer.parseInt(types[0]);
              S=Integer.parseInt(types[1]);
-            //System.out.println("s="+S +" m="+M);
-             //if(c1.getEnd()<c2.getEnd()return c2.getEnd()-c1.getStart()<=
+             ArrayList<SolutionClass> solutionClasses= new ArrayList<>();
+             solutionClasses.add(c1);
+             solutionClasses.add(c2);
+            for (int week = 0; week < Registry.getProblem().getNrWeeks(); week++) {
+                int finalWeek = week;
+                List<SolutionClass> weeklyClasses = solutionClasses.stream().filter(sc -> sc.getWeeks().charAt(finalWeek) == '1')
+                        .collect(Collectors.toList());
+                if (weeklyClasses.size() > 1) {
+                    for (int day = 0; day < Registry.getProblem().getNrDays(); day++) {
+                        int finalDay = day;
+                        List<SolutionClass> dailyClasses = weeklyClasses.stream().filter(sc -> sc.getDays().charAt(finalDay) == '1')
+                                .collect(Collectors.toList());
+                        dailyClasses.sort(Comparator.comparing(SolutionClass::getStart));
+
+                        Set<SolutionClass> Block = new HashSet<>();
+                        if (dailyClasses.size() > 1) {
+                            for (int k = 0; k < dailyClasses.size() - 1; k++) {
+                                if (dailyClasses.get(k + 1).getStart() - dailyClasses.get(k).getEnd() <= S) {
+                                    Block.add(dailyClasses.get(k));
+                                    Block.add(dailyClasses.get(k + 1));
+                                }
+                            }
+                            int sum = 0;
+                            for (SolutionClass sc : Block)
+                                sum += sc.getEnd() - sc.getStart();
+
+                            if (sum > M)
+                                return false;
+                        }
+                    }
+                }
+            }
             return true;
-        }else if(type.contains("MaxDayLoad"))
+        }
+        else if(type.contains("MaxDayLoad")) {
+
+                ArrayList<SolutionClass> solutionClasses = new ArrayList<>();
+                String clean = type.replaceAll("\\D+", ""); //remove non-digits
+                 S = Integer.parseInt(clean);//System.out.println(S);
+
+                solutionClasses.add(c1);
+                solutionClasses.add(c2);
+                for (Class otherClass : classes) {
+                    solutionClasses.add(otherClass.getAssignments().getSolutionClass());
+                }
+                for (int week = 0; week < Registry.getProblem().getNrWeeks(); week++) {
+                    int finalWeek = week;
+                    List<SolutionClass> weeklyClasses = solutionClasses.stream().filter(sc -> sc.getWeeks().charAt(finalWeek) == '1')
+                            .collect(Collectors.toList());
+                    for (int day = 0; day < Registry.getProblem().getNrDays(); day++) {
+                        int sum = 0;
+                        for (SolutionClass sc : weeklyClasses) {
+                            if (sc.getDays().charAt(day) == '1')
+                                sum += sc.getEnd() - sc.getStart();
+                        }
+                        if (sum > S)
+                            return false;
+                    }
+                }
+
             return true;
-        else if(type.contains("MaxDays"))
-            return true;
+        }
+        else if(type.contains("MaxDays")) {
+            int sum = 0;
+            ArrayList<SolutionClass> solutionClasses = new ArrayList<>();
+            String clean = type.replaceAll("\\D+", ""); //remove non-digits
+            int D = Integer.parseInt(clean);//System.out.println(S);
+            //List<Class> classes = c.getClasses().stream().filter(constraintClass -> constraintClass.getAssignments().getSolutionClass().getWeeks() != null)
+                    //.collect(Collectors.toList());
+            //for(Class classroom:classes)
+                ///solutionClasses.add(classroom.getAssignments().getSolutionClass());
+            solutionClasses.add(c1);
+            solutionClasses.add(c2);
+            StringBuilder str = new StringBuilder();
+            for (int i = 0; i < Registry.getProblem().getNrDays(); i++)
+                str.append('0');
+            String currentOr = str.toString();
+            for (SolutionClass sc : solutionClasses) {
+                currentOr = Registry.timeOrTime(currentOr, sc.getDays());
+            }
+            for (int i = 0; i < currentOr.length(); i++) {
+                if (currentOr.charAt(i) == '1')
+                    sum++;
+            }
+            return sum <= D;
+        }
         else {
             switch (type) {
                 case "SameAttendees":
@@ -222,8 +301,9 @@ public class Constraint {
         this.penalty = penalty;
     }
 
-    public boolean isValid()
+    public int violatedPairs() //returnsviolatedPairs
     {
+        int violatedPairs=0;
         if (type.contains("MaxDayLoad")) {
             ArrayList<SolutionClass> solutionClasses = new ArrayList<>();
             String clean = type.replaceAll("\\D+", ""); //remove non-digits
@@ -245,9 +325,10 @@ public class Constraint {
                             sum += sc.getEnd() - sc.getStart();
                     }
                     if (sum > S )
-                        return false;
+                        violatedPairs+= (sum-S);
                 }
             }
+            return  violatedPairs%Registry.getProblem().getNrWeeks();
 
         } else if (type.contains("MaxDays")) {
             int sum = 0;
@@ -270,7 +351,9 @@ public class Constraint {
                 if (currentOr.charAt(i) == '1')
                     sum++;
             }
-            return sum <= D;
+            if(sum>D)
+                return sum-D;
+            else return 0;
         } else if(type.contains("MaxBlock"))
         {
             ArrayList<SolutionClass> solutionClasses = new ArrayList<>();
@@ -306,16 +389,17 @@ public class Constraint {
                                     Block.add(dailyClasses.get(k + 1));
                                 }
                             }
+                            sum=0;
                             for (SolutionClass sc : Block)
                                 sum += sc.getEnd() - sc.getStart();
 
                             if (sum > M)
-                                return false;
+                                violatedPairs+=sum-M;
                         }
                     }
                 }
             }
-            return true;
+            return violatedPairs%Registry.getProblem().getNrWeeks();
 
         }else if(type.contains("MaxBreaks")){
             ArrayList<SolutionClass> solutionClasses = new ArrayList<>();
@@ -354,24 +438,25 @@ public class Constraint {
                             }
 
                             if (Block.size() - 1 > R)
-                                return false;
+                                violatedPairs+=Block.size()-1-R;
                         }
                     }
                 }
             }
-            return true;
+            return violatedPairs%Registry.getProblem().getNrWeeks();
         }
         else {
 
             for (int i=0;i<this.getClasses().size()-1;i++) {
-
-                    if (!valideConstraintForTheseClasses(classes.get(i).getAssignments().getSolutionClass(), classes.get(i+1).getAssignments().getSolutionClass()))
-                        return false;//courseClass.getAssignments().getId();
+                for(int j=i+1;j<this.getClasses().size();j++) {
+                    if (!valideConstraintForTheseClasses(classes.get(j).getAssignments().getSolutionClass(), classes.get(i).getAssignments().getSolutionClass()))
+                        violatedPairs++;
+                }
 
             }
         }
 
-        return true;
+        return violatedPairs;
     }
 
     public boolean isRespected() {

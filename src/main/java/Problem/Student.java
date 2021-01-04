@@ -35,4 +35,15 @@ public class Student {
     public void setOptions(StudentOptions options) {
         this.options = options;
     }
+
+    @XmlTransient
+    private int weight;
+    @XmlTransient
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
 }
