@@ -171,6 +171,8 @@ public class Constraint {
                     return !Registry.areTimesOverlaped(c1.getDays(), c2.getDays());
                 case "DifferentWeeks":
                     return !Registry.areTimesOverlaped(c1.getWeeks(), c2.getWeeks());
+                case "DifferentRoom":
+                    return !c1.getRoomId().equals(c2.getRoomId());
                 case "Overlap":
                     if(Registry.areTimesOverlaped(c1.getDays(), c2.getDays()) && Registry.areTimesOverlaped(c1.getWeeks(), c2.getWeeks()))
                     {
