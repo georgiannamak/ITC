@@ -292,7 +292,7 @@ public class Registry {
                                 flag = false;
                             System.out.println("p=" + p + " current dist=" + currentDistributionPenalty + " currentRoom= " + currentRoomPenalty + " currentTime= " + currentTimePenalty + " new dist= " + newDistPenalty * problem.getOptimization().getDistribution() + " newTimeAndRoompen= " + newTineRoomPenalty);
                             if (flag)
-                                System.out.println("You saved " + (currentDistributionPenalty + currentRoomPenalty + currentTimePenalty - newDistPenalty* problem.getOptimization().getDistribution() + newTineRoomPenalty));
+                                System.out.println("You saved " + (currentDistributionPenalty + currentRoomPenalty + currentTimePenalty - newDistPenalty* problem.getOptimization().getDistribution() - newTineRoomPenalty));
                         }
                         k++;
                         if (!flag && oldCurrentRoom != null)
@@ -317,9 +317,9 @@ public class Registry {
             System.out.println("Dist Penalty= " +currentSum);
             for(Class c1:problem.getClasses())
             {
-                currentSum+=c1.getAssignments().getCurrentTime().getPenalty()*problem.getOptimization().getTime();
+                currentSum= currentSum+(c1.getAssignments().getCurrentTime().getPenalty()*problem.getOptimization().getTime());
                 if(c1.getAssignments().getCurrentRoom()!=null)
-                    currentSum+=c1.getAssignments().getCurrentRoom().getRoomPenaltyForClass(c1.getClassId())*problem.getOptimization().getRoom();
+                    currentSum=currentSum+(c1.getAssignments().getCurrentRoom().getRoomPenaltyForClass(c1.getClassId())*problem.getOptimization().getRoom());
             }
             System.out.println("Final Penalty = " +currentSum );
             times++;
@@ -330,7 +330,7 @@ public class Registry {
                 if (sc.getRoomId() == -5)
                     sc.setRoomId(null);
             }
-             ObjectToXML xml2 = new ObjectToXML(solution,"_Final");
+             ObjectToXML xml2 = new ObjectToXML(solution,"_SWO");
             for (SolutionClass sc : bestSolution.getClasses()) {
                 if (sc.getRoomId() == null)
                     sc.setRoomId(-5);
