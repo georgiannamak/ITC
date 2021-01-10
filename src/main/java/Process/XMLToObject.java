@@ -28,7 +28,7 @@ public class XMLToObject {
 
             JAXBContext context= JAXBContext.newInstance(Problem.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            InputStream inStream = new FileInputStream( "src\\main\\resources\\tg-spr18.xml");
+            InputStream inStream = new FileInputStream( "src\\main\\resources\\nbi-spr18.xml");
             problem = (Problem) unmarshaller.unmarshal( inStream );
         }catch(Exception e)
         {
@@ -61,7 +61,7 @@ public class XMLToObject {
         Double travel = null;
         XPath xpath = XPathFactory.newInstance().newXPath();
         String expression = "/problem/rooms/room[@id=" + "'" + room1 + "'" + "]"+"/travel[@room=" +"'" +room2 +"'" +"]" +"/@value";
-        InputSource inputSource = new InputSource("src\\main\\resources\\tg-spr18.xml");
+        InputSource inputSource = new InputSource("src\\main\\resources\\nbi-spr18.xml");
         try {
              travel = (Double) xpath.evaluate(expression, inputSource, XPathConstants.NUMBER);
         } catch (XPathExpressionException e) {

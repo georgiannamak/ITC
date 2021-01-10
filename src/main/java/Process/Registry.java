@@ -190,7 +190,15 @@ public class Registry {
             }
 
         }
-
+        for (SolutionClass sc : bestSolution.getClasses()) {
+            if (sc.getRoomId() == -5)
+                sc.setRoomId(null);
+        }
+        ObjectToXML xml2 = new ObjectToXML(solution,"_Final");
+        for (SolutionClass sc : bestSolution.getClasses()) {
+            if (sc.getRoomId() == null)
+                sc.setRoomId(-5);
+        }
 
         //PHASE 2
         int sum=0;
@@ -225,7 +233,7 @@ public class Registry {
                     if (sc.getRoomId() == -5)
                         sc.setRoomId(null);
                 }
-                ObjectToXML xml = new ObjectToXML(bestSolution,"_SWO");
+                ObjectToXML xml = new ObjectToXML(bestSolution,"_Final");
                 for (SolutionClass sc : bestSolution.getClasses()) {
                     if (sc.getRoomId() == null)
                         sc.setRoomId(-5);
@@ -253,17 +261,17 @@ public class Registry {
                     else {
                         if (currentTimePenalty < currentRoomPenalty && oldCurrentRoom != null) {
 
-                            if (!sc.getAssignmentsOfClass().findAlternativeRoomForCurrentTime(false)) {
+                            if (!sc.getAssignmentsOfClass().findAlternativeRoomForCurrentTimeIncludingPenalty(false)) {
                                 sc.setRoomAndTime(oldCurrentRoom.getId(), oldCurrentTime);
-                                if (!sc.getAssignmentsOfClass().findAlternativeTimeForCurrentRoom(false))
+                                if (!sc.getAssignmentsOfClass().findAlternativeTimeForCurrentRoomIncludingPenalty(false))
                                     flag = false;
                             }
 
                         } else {
-                            if (!sc.getAssignmentsOfClass().findAlternativeTimeForCurrentRoom(false)) {
+                            if (!sc.getAssignmentsOfClass().findAlternativeTimeForCurrentRoomIncludingPenalty(false)) {
                                 if (oldCurrentRoom != null) {
                                     sc.setRoomAndTime(oldCurrentRoom.getId(), oldCurrentTime);
-                                    if (!sc.getAssignmentsOfClass().findAlternativeRoomForCurrentTime(false))
+                                    if (!sc.getAssignmentsOfClass().findAlternativeRoomForCurrentTimeIncludingPenalty(false))
                                         flag = false;
                                 } else {
                                     sc.setDays(oldCurrentTime.getDays());
@@ -292,7 +300,7 @@ public class Registry {
                                 flag = false;
                             System.out.println("p=" + p + " current dist=" + currentDistributionPenalty + " currentRoom= " + currentRoomPenalty + " currentTime= " + currentTimePenalty + " new dist= " + newDistPenalty * problem.getOptimization().getDistribution() + " newTimeAndRoompen= " + newTineRoomPenalty);
                             if (flag)
-                                System.out.println("You saved " + (currentDistributionPenalty + currentRoomPenalty + currentTimePenalty - newDistPenalty* problem.getOptimization().getDistribution() + newTineRoomPenalty));
+                                System.out.println("You saved " + (currentDistributionPenalty + currentRoomPenalty + currentTimePenalty - newDistPenalty* problem.getOptimization().getDistribution() - newTineRoomPenalty));
                         }
                         k++;
                         if (!flag && oldCurrentRoom != null)
@@ -330,7 +338,7 @@ public class Registry {
                 if (sc.getRoomId() == -5)
                     sc.setRoomId(null);
             }
-             ObjectToXML xml2 = new ObjectToXML(solution,"_Final");
+            xml2 = new ObjectToXML(solution,"_Final");
             for (SolutionClass sc : bestSolution.getClasses()) {
                 if (sc.getRoomId() == null)
                     sc.setRoomId(-5);
@@ -338,7 +346,7 @@ public class Registry {
         }
         else
         {
-            XMLToObject obj= new XMLToObject("solution_"+problem.getName()+"_SWO.xml");
+            XMLToObject obj= new XMLToObject("solution_"+problem.getName()+"_Final.xml");
             Solution bestSolutionFound=obj.getSolution();
             for(SolutionClass solutionClass:bestSolutionCLasses)
             {

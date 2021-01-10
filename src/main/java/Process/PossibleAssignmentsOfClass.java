@@ -39,8 +39,9 @@ public class PossibleAssignmentsOfClass {
             currentRoom = null;
             solutionClass.setRoomId(-5);
         }
-        // times.sort(Comparator.comparing(Time::getPenalty));
-        //rooms.sort(Comparator.comparing(Room::getPenalty));
+        times.sort(Comparator.comparing(Time::getPenalty));
+        rooms.sort(Comparator.comparing(Room::getPenalty));
+        rooms.sort(Comparator.comparing(Room::getPenalty));
         //weight=id;
         //weight=Integer.MAX_VALUE;
 
@@ -682,7 +683,7 @@ public class PossibleAssignmentsOfClass {
        // Time oldCurrentTime = currentTime;
         if (currentRoom != null && !remove) {
             currentRoom.getAvailability().removeRoomfromClassThisTime(id, currentTime);
-            //rooms.sort(Comparator.comparing((Room r)->r.getRoomPenaltyForClass(id)));
+           // rooms.sort(Comparator.comparing((Room r)->r.getRoomPenaltyForClass(id)));
             for (Room room : rooms) {
 
                 if (/*currentRoom != null &&*/  room.getAvailability().isRoomFreeThisTime(currentTime) && room!=currentRoom) {// && !overlapped) {
@@ -724,7 +725,7 @@ public class PossibleAssignmentsOfClass {
         // Time oldCurrentTime = currentTime;
         if (currentRoom != null && !remove) {
             currentRoom.getAvailability().removeRoomfromClassThisTime(id, currentTime);
-            rooms.sort(Comparator.comparing((Room r)->r.getRoomPenaltyForClass(id)));
+            //rooms.sort(Comparator.comparing((Room r)->r.getRoomPenaltyForClass(id)));
             for (Room room : rooms) {
 
                 if (room.getAvailability().isRoomFreeThisTime(currentTime) && room!=currentRoom && room.getRoomPenaltyForClass(id)<currentRoom.getRoomPenaltyForClass(id)) {

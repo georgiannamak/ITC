@@ -32,8 +32,8 @@ public class Solution {
 
     public Solution(String name){
         this.name=name;
-        technique="Anarixisi";
-        author="Georgianna2";
+        technique="SWO";
+        author="Georgianna Makraki";
         institurion="Uom";
         country="Greece";
         classes= new HashSet<SolutionClass>();
