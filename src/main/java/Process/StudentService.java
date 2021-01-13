@@ -61,7 +61,7 @@ public class StudentService {
                     //
                     for (int j=0;j<otherStudent.getOptions().getClasses().size();j++)
                     {
-                        Registry.findClassById(otherStudent.getOptions().getClasses().get(j)).getAssignments().getSolutionClass().getStudents().remove(otherStudent);
+                        Registry.findClassById(otherStudent.getOptions().getClasses().get(j)).getAssignments().getSolutionClass().getStudents().remove(otherStudent.getOptions().getSolutionStudent());
                     }
                     allStudents.get(k).getOptions().setClasses(new ArrayList<>());
                 }
