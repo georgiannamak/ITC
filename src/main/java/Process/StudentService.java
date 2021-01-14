@@ -49,7 +49,11 @@ public class StudentService {
                 minIndex = findMinIndexOfStudentEnrolledInCourse(problemCourseId);
                 if (minIndex < allStudents.indexOf(student)) {
                     student.setWeight(allStudents.get(minIndex).getWeight());
-
+                    for (int j=0;j<student.getOptions().getClasses().size();j++)
+                    {
+                        Registry.findClassById(student.getOptions().getClasses().get(j)).getAssignments().getSolutionClass().getStudents().remove(student.getOptions().getSolutionStudent());
+                    }
+                    student.getOptions().setClasses(new ArrayList<>());
                 } else {
                     minIndex=0;
                     student.setWeight(allStudents.get(0).getWeight() - 1);
@@ -67,9 +71,10 @@ public class StudentService {
                 }
                 allStudents.sort(Comparator.comparing(Student::getWeight));
                 i=allStudents.indexOf(student);
+                System.out.println("New try for students");
             }else i++;
 
-            System.out.println(i);
+            System.out.println("Student " +i +" with id " +allStudents.get(i).getId());
         }
     }
 
