@@ -373,7 +373,7 @@ public class PossibleAssignmentsOfClass {
             currentRoom.getAvailability().removeRoomfromClassThisTime(id, currentTime);
             //times.sort(Comparator.comparing(Time::getPenalty));
             for (Time t : times) {
-                if(  currentRoom.getAvailability().isRoomFreeThisTime(t) && t.IsDifeerentTime(currentTime) && t.getPenalty()<currentTime.getPenalty()) {// && !overlapped) {
+                if(  currentRoom.getAvailability().isRoomFreeThisTime(t) && t.IsDifeerentTime(currentTime) && t.getPenalty()<=currentTime.getPenalty()) {// && !overlapped) {
                     Time oldCurrent = currentTime;
                     SolutionClass tempSolutionClass = new SolutionClass(id, currentRoom.getId(), t);
                     if (checkClassforConstraints(tempSolutionClass,"REQUIRED")) {
@@ -728,7 +728,7 @@ public class PossibleAssignmentsOfClass {
             //rooms.sort(Comparator.comparing((Room r)->r.getRoomPenaltyForClass(id)));
             for (Room room : rooms) {
 
-                if (room.getAvailability().isRoomFreeThisTime(currentTime) && room!=currentRoom && room.getRoomPenaltyForClass(id)<currentRoom.getRoomPenaltyForClass(id)) {
+                if (room.getAvailability().isRoomFreeThisTime(currentTime) && room!=currentRoom && room.getRoomPenaltyForClass(id)<=currentRoom.getRoomPenaltyForClass(id)) {
                     Room oldCurrent = currentRoom;
                     //currentRoom.getAvailability().IsAssignedTo(oldCurrent).forEach(System.out::println);
 
