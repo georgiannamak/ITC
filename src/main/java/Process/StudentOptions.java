@@ -153,14 +153,15 @@ public class StudentOptions {
                         classes.add(courseClass.getClassId());
                         foundClass = true;
                     }
+                    if(courseClass==null)
+                        return false;
                 }
                 if(!foundClass && courseClass!=null)
                     notChecked.remove(courseClass);
                // else if(courseClass==null)
                    // return false;
             }
-            if(notChecked.size()==0)
-                return false;
+
         }
         return true;
     }
