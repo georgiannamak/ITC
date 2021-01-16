@@ -40,7 +40,7 @@ public class Registry {
         //ObjectToXML xml4 = new ObjectToXML(problem);
         createAvailabilitiesOfRooms();
         connectRoomsWithRoomsAvailableForClass();
-        findChildClass();
+       // findChildClass();
         //problem.getClasses().get(0).getRooms().get(0).getAvailability().printAvailability();
         createClassPossibleAssignments();
         handleConstraints();
@@ -190,15 +190,9 @@ public class Registry {
             }
 
         }
-        for (SolutionClass sc : bestSolution.getClasses()) {
-            if (sc.getRoomId() == -5)
-                sc.setRoomId(null);
-        }
-        ObjectToXML xml2 = new ObjectToXML(solution,"_Final");
-        for (SolutionClass sc : bestSolution.getClasses()) {
-            if (sc.getRoomId() == null)
-                sc.setRoomId(-5);
-        }
+
+        CreateXmlSolutionFile(solution,"_Final");
+
 
         //PHASE 2
         int sum=0;
@@ -226,18 +220,10 @@ public class Registry {
         int times=0;
         int currentSum=0;
         int oldSum=sum;
-        while(times<10 && currentSum<oldSum) {
+        while(times<50 && currentSum<oldSum) {
             if(times!=0) {
                 oldSum = currentSum;
-                for (SolutionClass sc : bestSolution.getClasses()) {
-                    if (sc.getRoomId() == -5)
-                        sc.setRoomId(null);
-                }
-                ObjectToXML xml = new ObjectToXML(bestSolution,"_Final");
-                for (SolutionClass sc : bestSolution.getClasses()) {
-                    if (sc.getRoomId() == null)
-                        sc.setRoomId(-5);
-                }
+                CreateXmlSolutionFile(bestSolution,"_Final");
                 currentSum = 0;
             }
             System.out.println("tines="+times);
@@ -247,7 +233,7 @@ public class Registry {
                 Room oldCurrentRoom;
                 int currentRoomPenalty = 0;
                 boolean flag = true;
-                while (flag && k < Integer.max(sc.getAssignmentsOfClass().getRooms().size(), sc.getAssignmentsOfClass().getTimes().size())) {
+                //while (flag && k < Integer.max(sc.getAssignmentsOfClass().getRooms().size(), sc.getAssignmentsOfClass().getTimes().size())) {
                     oldCurrentTime = sc.getAssignmentsOfClass().getCurrentTime();
                     oldCurrentRoom = sc.getAssignmentsOfClass().getCurrentRoom();
                     int currentDistributionPenalty = sc.getAssignmentsOfClass().calculateDistributionPenalty() * problem.getOptimization().getDistribution();
@@ -296,7 +282,7 @@ public class Registry {
                             else
                                 newTineRoomPenalty = sc.getAssignmentsOfClass().getCurrentTime().getPenalty() * problem.getOptimization().getTime();
                             int p = new Random().nextInt(100);
-                            if (newDistPenalty * problem.getOptimization().getDistribution() + newTineRoomPenalty >= currentDistributionPenalty + currentRoomPenalty + currentTimePenalty && p <= 70)
+                            if (newDistPenalty * problem.getOptimization().getDistribution() + newTineRoomPenalty >= currentDistributionPenalty + currentRoomPenalty + currentTimePenalty && p <= 80)
                                 flag = false;
                             System.out.println("p=" + p + " current dist=" + currentDistributionPenalty + " currentRoom= " + currentRoomPenalty + " currentTime= " + currentTimePenalty + " new dist= " + newDistPenalty * problem.getOptimization().getDistribution() + " newTimeAndRoompen= " + newTineRoomPenalty);
                             if (flag)
@@ -311,7 +297,7 @@ public class Registry {
                             sc.setStart(oldCurrentTime.getStart());
                             sc.setEnd(oldCurrentTime.getEnd());
                         }
-                    }
+                    //}
                 }
             }
             for(Constraint constraint:problem.getSoftConstraints())
@@ -333,22 +319,13 @@ public class Registry {
             times++;
 
         }
-        if(times==10) {
-            for (SolutionClass sc : bestSolution.getClasses()) {
-                if (sc.getRoomId() == -5)
-                    sc.setRoomId(null);
-            }
-            xml2 = new ObjectToXML(solution,"_Final");
-            for (SolutionClass sc : bestSolution.getClasses()) {
-                if (sc.getRoomId() == null)
-                    sc.setRoomId(-5);
-            }
-        }
+        if(times==50)
+            CreateXmlSolutionFile(solution,"_Final");
         else
         {
             XMLToObject obj= new XMLToObject("solution_"+problem.getName()+"_Final.xml");
             Solution bestSolutionFound=obj.getSolution();
-            for(SolutionClass solutionClass:bestSolutionCLasses)
+            for(SolutionClass solutionClass:bestSolutionFound.getClasses())//bestSolutionCLasses)
             {
                 for(SolutionClass solutionClassofNew:bestSolutionFound.getClasses()){
                     if(solutionClass.getId()==solutionClassofNew.getId())
@@ -362,12 +339,23 @@ public class Registry {
                 }
             }
         }
-
+       // XMLToObject object = new XMLToObject()
         StudentService studentService = new StudentService(Registry.getProblem().getStudents());
         studentService.connectStudentCoursesWithProblemCourses();
         studentService.assignStudentsToCourses();
+        ObjectToXML xml = new ObjectToXML(solution,"_Students");
+    }
 
-        ObjectToXML xml = new ObjectToXML(solution,"_Final");
+    public static void CreateXmlSolutionFile(Solution solution,String type) {
+        for (SolutionClass sc : solution.getClasses()) {
+            if (sc.getRoomId() == -5)
+                sc.setRoomId(null);
+        }
+        ObjectToXML xml2 = new ObjectToXML(solution,type);
+        for (SolutionClass sc : solution.getClasses()) {
+            if (sc.getRoomId() == null)
+                sc.setRoomId(-5);
+        }
     }
 
     private static void findChildClass() {
