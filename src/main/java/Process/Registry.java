@@ -343,7 +343,7 @@ public class Registry {
         StudentService studentService = new StudentService(Registry.getProblem().getStudents());
         studentService.connectStudentCoursesWithProblemCourses();
         studentService.assignStudentsToCourses();
-        ObjectToXML xml = new ObjectToXML(solution,"Final");
+        ObjectToXML xml = new ObjectToXML(solution,"_Final");
     }
 
     public static void CreateXmlSolutionFile(Solution solution,String type) {
