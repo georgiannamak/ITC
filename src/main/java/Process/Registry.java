@@ -325,7 +325,7 @@ public class Registry {
         {
             XMLToObject obj= new XMLToObject("solution_"+problem.getName()+"_Final.xml");
             Solution bestSolutionFound=obj.getSolution();
-            for(SolutionClass solutionClass:bestSolutionFound.getClasses())//bestSolutionCLasses)
+            for(SolutionClass solutionClass:bestSolutionCLasses)//bestSolutionCLasses)
             {
                 for(SolutionClass solutionClassofNew:bestSolutionFound.getClasses()){
                     if(solutionClass.getId()==solutionClassofNew.getId())
