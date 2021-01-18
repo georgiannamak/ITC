@@ -10,6 +10,7 @@ import Solution.SolutionStudent;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class StudentService {
@@ -33,10 +34,12 @@ public class StudentService {
         }
     }
 
+
+
     public void assignStudentsToCourses()
     {
        // ArrayList<Student> allStudents= Registry.getProblem().getStudents();
-        allStudents.sort(Comparator.comparing((Student student)->student.getCourses().size()).reversed());
+        allStudents.sort(Comparator.comparing((Student student)->student.getCourses().size()).reversed().thenComparing((Student student) -> student.getId()));
         int i=0;
         allStudents.forEach(student->student.setWeight(allStudents.indexOf(student)));
         while(i<allStudents.size())
@@ -46,14 +49,15 @@ public class StudentService {
             int problemCourseId=student.getOptions().enrollToCourses2();
             int minIndex=-1;
             if(problemCourseId!=-1) {
+                Registry.CreateXmlSolutionFile(Registry.getSolution(),"_Students");
                 minIndex = findMinIndexOfStudentEnrolledInCourse(problemCourseId);
-                if (minIndex < allStudents.indexOf(student)) {
+                for (int j=0;j<student.getOptions().getClasses().size();j++)
+                {
+                    Registry.findClassById(student.getOptions().getClasses().get(j)).getAssignments().getSolutionClass().getStudents().remove(student.getOptions().getSolutionStudent());
+                }
+                student.getOptions().setClasses(new ArrayList<>());
+                if (minIndex < allStudents.indexOf(student) && new Random().nextInt(100)<=90) {
                     student.setWeight(allStudents.get(minIndex).getWeight());
-                    for (int j=0;j<student.getOptions().getClasses().size();j++)
-                    {
-                        Registry.findClassById(student.getOptions().getClasses().get(j)).getAssignments().getSolutionClass().getStudents().remove(student.getOptions().getSolutionStudent());
-                    }
-                    student.getOptions().setClasses(new ArrayList<>());
                 } else {
                     minIndex=0;
                     student.setWeight(allStudents.get(0).getWeight() - 1);
@@ -61,20 +65,21 @@ public class StudentService {
 
                 for (int k = minIndex; k < allStudents.indexOf(student); k++) {
                     Student otherStudent=allStudents.get(k);
-                    otherStudent.setWeight(allStudents.get(k).getWeight() + 1);
+                    otherStudent.setWeight(otherStudent.getWeight() + 1);
                     //
                     for (int j=0;j<otherStudent.getOptions().getClasses().size();j++)
                     {
                         Registry.findClassById(otherStudent.getOptions().getClasses().get(j)).getAssignments().getSolutionClass().getStudents().remove(otherStudent.getOptions().getSolutionStudent());
                     }
-                    allStudents.get(k).getOptions().setClasses(new ArrayList<>());
+                    otherStudent.getOptions().setClasses(new ArrayList<>());
                 }
                 allStudents.sort(Comparator.comparing(Student::getWeight));
                 i=allStudents.indexOf(student);
                 System.out.println("New try for students");
+
             }else i++;
 
-            System.out.println("Student " +i +" with id " +allStudents.get(i).getId());
+            System.out.println("Student " +i +" with id " +student.getId());
         }
     }
 
@@ -94,4 +99,5 @@ public class StudentService {
     public ArrayList<Student> getAllStudents() {
         return allStudents;
     }
+
 }
