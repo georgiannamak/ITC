@@ -228,7 +228,7 @@ public class Registry {
             }
             System.out.println("tines="+times);
             for (SolutionClass sc : bestSolutionCLasses) {
-                int k = 0;
+               // int k = 0;
                 Time oldCurrentTime;
                 Room oldCurrentRoom;
                 int currentRoomPenalty = 0;
@@ -288,7 +288,7 @@ public class Registry {
                             if (flag)
                                 System.out.println("You saved " + (currentDistributionPenalty + currentRoomPenalty + currentTimePenalty - newDistPenalty* problem.getOptimization().getDistribution() - newTineRoomPenalty));
                         }
-                        k++;
+                        //k++;
                         if (!flag && oldCurrentRoom != null)
                             sc.setRoomAndTime(oldCurrentRoom.getId(), oldCurrentTime);
                         else if (oldCurrentRoom == null) {
@@ -564,11 +564,16 @@ public class Registry {
     public static void createClassPossibleAssignments() {
         problem.getClasses().forEach((Class c)->c.setAssignments(new PossibleAssignmentsOfClass(c)));
         problem.getClasses().forEach((Class c)->solution.addClass(c.getAssignments().getSolutionClass()));
-        /*for(Class c:problem.getClasses())
+        for(Course course:problem.getCourses())
         {
-            c.setAssignments(new PossibleAssignmentsOfClass(c));
-            solution.addClass(c.getAssignments().getSolutionClass());
-        }*/
+            for(Configuration config: course.getConfigurations())
+            {
+                for(Subpart subpart:config.getSubparts())
+                {
+                    subpart.getClasses().forEach(classroom->classroom.setSubpart(subpart));
+                }
+            }
+        }
     }
     public static Class findClassById(int Id)
     {

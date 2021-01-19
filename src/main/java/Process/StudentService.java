@@ -45,6 +45,7 @@ public class StudentService {
         while(i<allStudents.size())
         {
             Student student=allStudents.get(i);
+            System.out.println("Student " +i +" with id " +student.getId());
             student.setOptions(new StudentOptions(new SolutionStudent(student.getId()),student.getId(),student.getCourses()));
             int problemCourseId=student.getOptions().enrollToCourses2();
             int minIndex=-1;
@@ -53,7 +54,7 @@ public class StudentService {
                 minIndex = findMinIndexOfStudentEnrolledInCourse(problemCourseId);
                 for (int j=0;j<student.getOptions().getClasses().size();j++)
                 {
-                    Registry.findClassById(student.getOptions().getClasses().get(j)).getAssignments().getSolutionClass().getStudents().remove(student.getOptions().getSolutionStudent());
+                    student.getOptions().getClasses().get(j).getAssignments().getSolutionClass().getStudents().remove(student.getOptions().getSolutionStudent());
                 }
                 student.getOptions().setClasses(new ArrayList<>());
                 if (minIndex < allStudents.indexOf(student) && new Random().nextInt(100)<=90) {
@@ -69,7 +70,7 @@ public class StudentService {
                     //
                     for (int j=0;j<otherStudent.getOptions().getClasses().size();j++)
                     {
-                        Registry.findClassById(otherStudent.getOptions().getClasses().get(j)).getAssignments().getSolutionClass().getStudents().remove(otherStudent.getOptions().getSolutionStudent());
+                        otherStudent.getOptions().getClasses().get(j).getAssignments().getSolutionClass().getStudents().remove(otherStudent.getOptions().getSolutionStudent());
                     }
                     otherStudent.getOptions().setClasses(new ArrayList<>());
                 }
@@ -79,7 +80,6 @@ public class StudentService {
 
             }else i++;
 
-            System.out.println("Student " +i +" with id " +student.getId());
         }
     }
 

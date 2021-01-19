@@ -10,9 +10,9 @@ public class Subpart  {
     public Subpart() { classes = new ArrayList<Class>();  }
 
     @XmlAttribute
-    private String id;
-    public String getSubpartId() { return id; }
-    public void setSubpartId(String id) { this.id = id; }
+    private int id;
+    public int getSubpartId() { return id; }
+    public void setSubpartId(int id) { this.id = id; }
 
     @XmlElement(name="class")
     private ArrayList<Class> classes;

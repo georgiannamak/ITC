@@ -167,4 +167,11 @@ public class SolutionClass {
     public PossibleAssignmentsOfClass getAssignmentsOfClass() {
         return assignmentsOfClass;
     }
+
+    public void addStudent(SolutionStudent student){
+        if(!students.contains(student))
+            students.add(student);
+        else
+            System.out.println("student already exists in class " +id);
+    }
 }

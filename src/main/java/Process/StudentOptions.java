@@ -12,7 +12,7 @@ public class StudentOptions {
     private SolutionStudent solutionStudent;
     private int id;
     private ArrayList<Course> courses;
-    private ArrayList<Integer> classes;
+    private ArrayList<Class> classes;
 
     public StudentOptions(SolutionStudent solutionStudent, int id, ArrayList<Course> courses) {
         this.solutionStudent = solutionStudent;
@@ -94,7 +94,7 @@ public class StudentOptions {
     }*/
 
     public int  enrollToCourses2() {
-        Random random=new Random();
+
         for(Course course:courses)
         {
             Collections.shuffle(course.getConfigurations());
@@ -105,8 +105,7 @@ public class StudentOptions {
                 if(!enrollToClassesOfConfiguration(configuration)) {
                     i++;
                     System.out.println("Changing config at course " +course.getCourse_id());
-                    for (Integer classId : classes) {
-                        Class classroom=Registry.findClassById(classId);
+                    for (Class classroom : classes) {
                         classroom.getAssignments().getSolutionClass().getStudents().remove(solutionStudent);
                     }
                     setClasses(new ArrayList<>());
@@ -120,49 +119,59 @@ public class StudentOptions {
     }
 
     private boolean enrollToClassesOfConfiguration(Configuration configuration) {
-        for(Subpart subpart:configuration.getSubparts())
-        {
-            ArrayList<Class> notChecked = new ArrayList<Class>(subpart.getClasses());
-            //ArrayList<Integer> classesIds = new ArrayList<>();
-            //classes.forEach((Class c) -> classesIds.add(c.getClassId()));
-            boolean foundClass=false;
-            while(!foundClass && notChecked.size()>0) {
-                Class courseClass = null;
-                for (Class c : notChecked) {
-                    if (classes.contains(c.getParent())&&c.getAssignments().getSolutionClass().getStudents().size()<c.getLimit()) {
-                        courseClass = c;
-                        break;
+        for(Subpart subpart:configuration.getSubparts()) {
+            Class sameSub = classes.stream().filter(classroom -> classroom.getSubpart() == subpart).findAny().orElse(null);
+            if (sameSub == null) {
+                ArrayList<Class> notChecked = new ArrayList<Class>(subpart.getClasses());
+                Collections.shuffle(notChecked);
+                boolean foundClass = false;
+                while (!foundClass && notChecked.size() > 0) {
+                    Class courseClass = null;
+                    for (Class c : notChecked) {
+                        if (classes.contains(Registry.findClassById(c.getParent())) && c.getAssignments().getSolutionClass().getStudents().size() < c.getLimit()) {
+                            courseClass = c;
+                            break;
+                        }
                     }
-                }
-                if (courseClass == null)
-                    courseClass = notChecked.stream()
-                            .filter((Class classroom) -> !isThereConflict(classroom))
-                            .filter((Class classroom) -> classroom.getAssignments().getSolutionClass().getStudents().size() < classroom.getLimit())
-                            .filter((Class classroom)->classroom.getParent()==0)
-                            .findAny().orElse(null);
-                if (courseClass != null) {
-                    courseClass.getAssignments().getSolutionClass().getStudents().add(solutionStudent);
-                    classes.add(courseClass.getClassId());
-                    foundClass=true;
-                } else {
-                    courseClass = notChecked.stream()
-                            .filter((Class classroom) -> classroom.getAssignments().getSolutionClass().getStudents().size() < classroom.getLimit())
-                            .findAny().orElse(null);
-                    if (courseClass != null && courseClass.getParent() == 0) {
-                        courseClass.getAssignments().getSolutionClass().getStudents().add(solutionStudent);
-                        classes.add(courseClass.getClassId());
+                    if (courseClass == null) {
+                        courseClass = notChecked.stream()
+                                .filter((Class classroom) -> !isThereConflict(classroom))
+                                .filter((Class classroom) -> classroom.getAssignments().getSolutionClass().getStudents().size() < classroom.getLimit())
+                                .filter((Class classroom) -> classroom.getParent() == 0)
+                                .findAny().orElse(null);
+                    }
+                    if (courseClass != null) {
+                        courseClass.getAssignments().getSolutionClass().addStudent(solutionStudent);
+                        classes.add(courseClass);
                         foundClass = true;
+                    } else {
+                        courseClass=notChecked.get(0);
+                        if (courseClass.getAssignments().getSolutionClass().getStudents().size()<courseClass.getLimit()) {
+                            if (courseClass.getParent() == 0) {
+                                courseClass.getAssignments().getSolutionClass().addStudent(solutionStudent);
+                                classes.add(courseClass);
+                                foundClass = true;
+                            } else {
+                                Class parentClass = Registry.findClassById(courseClass.getParent());
+                                 sameSub = classes.stream().filter(classroom -> classroom.getSubpart() == parentClass.getSubpart()).findAny().orElse(null);
+                                if (sameSub == null && parentClass.getAssignments().getSolutionClass().getStudents().size() < parentClass.getLimit() &&parentClass.getParent()==0) {
+                                    courseClass.getAssignments().getSolutionClass().addStudent(solutionStudent);
+                                    classes.add(courseClass);
+                                    foundClass = true;
+                                    parentClass.getAssignments().getSolutionClass().addStudent(solutionStudent);
+                                    classes.add(parentClass);
+                                }
+                            }
+                        }
+                        //if(courseClass==null)
+                        // return false;
                     }
-                    //if(courseClass==null)
-                       // return false;
+                    if (!foundClass)
+                        notChecked.remove(courseClass);
                 }
-                if(!foundClass && courseClass!=null)
-                    notChecked.remove(courseClass);
-                else if(courseClass==null)
+                if (notChecked.size() == 0)
                     return false;
             }
-            if(notChecked.size()==0)
-                return false;
         }
         return true;
     }
@@ -201,9 +210,8 @@ public class StudentOptions {
 
    public boolean isThereConflict(Class c)
    {
-       for(int classroomId:classes)
+       for(Class classroom:classes)
        {
-           Class classroom=Registry.findClassById(classroomId);
            if(!new Constraint("SameAttendees").valideConstraintForTheseClasses(c.getAssignments().getSolutionClass(),classroom.getAssignments().getSolutionClass()))
                return true;
        }
@@ -218,11 +226,11 @@ public class StudentOptions {
         this.solutionStudent = solutionStudent;
     }
 
-    public ArrayList<Integer> getClasses() {
+    public ArrayList<Class> getClasses() {
         return classes;
     }
 
-    public void setClasses(ArrayList<Integer> classes) {
+    public void setClasses(ArrayList<Class> classes) {
         this.classes = classes;
     }
 }
