@@ -217,16 +217,22 @@ public class Registry {
         }
         System.out.println("Final Penalty = " +sum );
 
-        int times=0;
+       // int times=0;
         int currentSum=0;
-        int oldSum=sum;
-        while(times<50 && currentSum<oldSum) {
-            if(times!=0) {
-                oldSum = currentSum;
+        int bestSum=sum;
+        int worseTimes=-1;
+        while(/*times<50 &&*/ (currentSum<=bestSum || worseTimes<3)) {
+
+            if(worseTimes!=-1 && currentSum<bestSum) {
+                bestSum = currentSum;
                 CreateXmlSolutionFile(bestSolution,"_Final");
-                currentSum = 0;
+                worseTimes=0;
             }
-            System.out.println("tines="+times);
+            else//(/*times!=0 &&*/ currentSum>=bestSum)
+                worseTimes++;
+
+            currentSum=0;
+            System.out.println(/*"tines="+times+*/ " worseTime=" +worseTimes);
             for (SolutionClass sc : bestSolutionCLasses) {
                // int k = 0;
                 Time oldCurrentTime;
@@ -316,13 +322,13 @@ public class Registry {
                     currentSum+=c1.getAssignments().getCurrentRoom().getRoomPenaltyForClass(c1.getClassId())*problem.getOptimization().getRoom();
             }
             System.out.println("Final Penalty = " +currentSum );
-            times++;
+            //times++;
 
         }
-        if(times==50)
-            CreateXmlSolutionFile(solution,"_Final");
-        else
-        {
+      // if(bestSum==0)// if(times==50)
+            //CreateXmlSolutionFile(solution,"_Final");
+       // else
+       // {
             XMLToObject obj= new XMLToObject("solution_"+problem.getName()+"_Final.xml");
             Solution bestSolutionFound=obj.getSolution();
             for(SolutionClass solutionClass:bestSolutionCLasses)//bestSolutionCLasses)
@@ -338,7 +344,7 @@ public class Registry {
                     }
                 }
             }
-        }
+        //}
        // XMLToObject object = new XMLToObject()
         StudentService studentService = new StudentService(Registry.getProblem().getStudents());
         studentService.connectStudentCoursesWithProblemCourses();
