@@ -108,7 +108,11 @@ public class StudentOptions {
                     for (Class classroom : classes) {
                         classroom.getAssignments().getSolutionClass().getStudents().remove(solutionStudent);
                     }
-                    setClasses(new ArrayList<>());
+                    for(Subpart subpart:configuration.getSubparts())
+                    {
+                        for(Class aClass:subpart.getClasses())
+                            classes.remove(aClass);
+                    }
                 }else
                     enrolledToAllClasses=true;
             }

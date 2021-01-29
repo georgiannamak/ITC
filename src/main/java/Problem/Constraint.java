@@ -303,7 +303,7 @@ public class Constraint {
         this.penalty = penalty;
     }
 
-    public int violatedPairs() //returnsviolatedPairs
+    public int violatedPairs() //returnsViolatedPairs
     {
         int violatedPairs=0;
         if (type.contains("MaxDayLoad")) {
