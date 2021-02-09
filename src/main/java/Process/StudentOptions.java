@@ -105,13 +105,15 @@ public class StudentOptions {
                 if(!enrollToClassesOfConfiguration(configuration)) {
                     i++;
                     System.out.println("Changing config at course " +course.getCourse_id());
-                    for (Class classroom : classes) {
-                        classroom.getAssignments().getSolutionClass().getStudents().remove(solutionStudent);
-                    }
+                    //for (Class classroom : classes) {
+                       // classroom.getAssignments().getSolutionClass().getStudents().remove(solutionStudent);
+                   // }
                     for(Subpart subpart:configuration.getSubparts())
                     {
-                        for(Class aClass:subpart.getClasses())
+                        for(Class aClass:subpart.getClasses()) {
                             classes.remove(aClass);
+                            aClass.getAssignments().getSolutionClass().getStudents().remove(solutionStudent);
+                        }
                     }
                 }else
                     enrolledToAllClasses=true;

@@ -221,7 +221,7 @@ public class Registry {
         int currentSum=0;
         int bestSum=sum;
         int worseTimes=-1;
-        while(/*times<50 &&*/ (currentSum<=bestSum || worseTimes<3)) {
+        while(/*times<50 &&*/ (currentSum<bestSum || worseTimes<3)) {
 
             if(worseTimes!=-1 && currentSum<bestSum) {
                 bestSum = currentSum;
@@ -577,6 +577,11 @@ public class Registry {
                 for(Subpart subpart:config.getSubparts())
                 {
                     subpart.getClasses().forEach(classroom->classroom.setSubpart(subpart));
+                    for(Class classroom:subpart.getClasses())
+                    {
+                        if(classroom.getLimit()==0)
+                            classroom.setLimit(Integer.MAX_VALUE);
+                    }
                 }
             }
         }
@@ -613,10 +618,6 @@ public class Registry {
     }
     public static void createAvailabilitiesOfRooms() {
         problem.getRooms().forEach((Room room)->room.setAvailability(new AvailabiltyOfRoom(room)));
-        /*for (Room room:problem.getRooms()
-             ) {
-            room.setAvailability(new AvailabiltyOfRoom(room));
-        }*/
 
     }
 
